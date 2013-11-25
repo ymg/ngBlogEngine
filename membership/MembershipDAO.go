@@ -1,2 +1,0 @@
-// MembershipDAO
-package Membership

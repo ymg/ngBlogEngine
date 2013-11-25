@@ -2,11 +2,14 @@
 package main
 
 import (
+	"code.google.com/p/go.crypto/bcrypt"
+	"crypto/hmac"
+	"crypto/sha512"
 	//"encoding/json"
 	"fmt"
-	//"time"
+	"time"
 
-	//"ngBlogEngine/membership"
+	"ngBlogEngine/membership"
 	"ngBlogEngine/post"
 
 	"github.com/astaxie/beego"
@@ -35,16 +38,14 @@ func (this *MainController) Get() {
 func (this *AuthenticationController) Get() {
 	SetHeaders(&this.Controller)
 	//this.Abort("403")
-	post := &PostDAO.Post{}
+	post := &post_dao.Post{}
 	post.Title = "Angular MicroBlog!"
 	post.Body = "Hello from Go 1.1!"
 	post.Date = "17-Nov-2013"
 
 	/*r, _ := json.Marshal(&post)
-
 	c, _ := redis.Dial("tcp", ":6379")
 	n, _ := c.Do("APPEND", "post", r)
-
 	fmt.Println(n)*/
 
 	output := blackfriday.MarkdownBasic([]byte("##Hello,World\n-------\n_yes_\n\n    js lol epic"))
