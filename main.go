@@ -2,18 +2,11 @@
 package main
 
 import (
-	"code.google.com/p/go.crypto/bcrypt"
-	"crypto/hmac"
-	"crypto/sha512"
-	//"encoding/json"
+	"encoding/json"
 	"fmt"
-	"time"
-
-	"ngBlogEngine/membership"
-	"ngBlogEngine/post"
 
 	"github.com/astaxie/beego"
-	//"github.com/garyburd/redigo/redis"
+	"github.com/garyburd/redigo/redis"
 	"github.com/russross/blackfriday"
 )
 
@@ -38,15 +31,16 @@ func (this *MainController) Get() {
 func (this *AuthenticationController) Get() {
 	SetHeaders(&this.Controller)
 	//this.Abort("403")
-	post := &post_dao.Post{}
+	post := &Post{}
 	post.Title = "Angular MicroBlog!"
 	post.Body = "Hello from Go 1.1!"
 	post.Date = "17-Nov-2013"
 
-	/*r, _ := json.Marshal(&post)
-	c, _ := redis.Dial("tcp", ":6379")
+	r, _ := json.Marshal(&post)
+	c, _ := redis.Dial("tcp", "localhost:6379")
+	defer c.Close()
 	n, _ := c.Do("APPEND", "post", r)
-	fmt.Println(n)*/
+	fmt.Println(n)
 
 	output := blackfriday.MarkdownBasic([]byte("##Hello,World\n-------\n_yes_\n\n    js lol epic"))
 	fmt.Println(string(output))
@@ -74,6 +68,7 @@ func SetHeaders(this *beego.Controller) {
 }
 
 func main() {
+
 	beego.Router("/", &MainController{})
 	beego.Router("/auth", &AuthenticationController{})
 

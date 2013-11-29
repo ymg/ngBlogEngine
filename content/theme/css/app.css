@@ -132,6 +132,10 @@
 
 }
 
+pre code {
+    white-space: pre;
+    overflow-x: auto;
+}
 p {
     font-family: 'bitterbold', Helvetica, Arial, sans-serif;
     line-height: 1.2;

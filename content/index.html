@@ -28,29 +28,42 @@
             <hr/>
             <em>yes</em>
 <pre><code>
- var server string           // host:port of server
- var password string
- ...
-
- pool = &redis.Pool{
-         MaxIdle: 3,
-         IdleTimeout: 240 * time.Second,
-         Dial: func () (redis.Conn, error) {
-             c, err := redis.Dial("tcp", server)
-             if err != nil {
-                 return nil, err
-             }
-             if _, err := c.Do("AUTH", password); err != nil {
-                 c.Close()
-                 return nil, err
-             }
-             return c, err
-         },
-            TestOnBorrow: func(c redis.Conn, t time.Time) error {
-                _, err := c.Do("PING")
-             return err
-            },
-     }
+func Save(c appengine.Context, obj interface{}) (key *datastore.Key, err error) {
+    kind, val := reflect.TypeOf(obj), reflect.ValueOf(obj)
+    str := val
+    if val.Kind().String() == "ptr" {
+        kind, str = kind.Elem(), val.Elem()
+    }
+    if str.Kind().String() != "struct" {
+        return nil, errors.New("Must pass a valid object to struct")
+    }
+    dsKind := kind.String()
+    if li := strings.LastIndex(dsKind, "."); li >= 0 {
+        //Format kind to be in a standard format used for datastore
+        dsKind = dsKind[li+1:]
+    }
+    idField := str.FieldByName("ID")
+    if idField.IsValid() && idField.Int() != 0 {
+        key = datastore.NewKey(c, dsKind, "", idField.Int(), nil)
+    } else {
+        key = datastore.NewIncompleteKey(c, dsKind, nil)
+    }
+    if bsMethod := val.MethodByName("BeforeSave"); bsMethod.IsValid() {
+        bsMethod.Call([]reflect.Value{reflect.ValueOf(c)})
+    }
+    key, err = datastore.Put(c, key, obj)
+    if err != nil {
+        c.Errorf("[utils/Save]: %v", err.Error())
+    } else {
+        if idField.IsValid() {
+            idField.SetInt(key.IntID())
+        }
+        if asMethod := val.MethodByName("AfterSave"); asMethod.IsValid() {
+            asMethod.Call([]reflect.Value{reflect.ValueOf(c), reflect.ValueOf(key)})
+        }
+    }
+    return
+}
 </code></pre>
         </div>
     </div>
@@ -60,7 +73,7 @@
     <div class="uk-container uk-container-center uk-clearfix">
         <div class="uk-grid">
             <div class="img_align uk-width-1-1">
-                <img src="content/theme/img/logo_uikit_large2.png" alt="Kiwi standing on oval">
+                <img src="content/theme/img/logo_uikit.png" alt="Kiwi standing on oval">
                 <img src="content/theme/img/gopher2.png" alt="Kiwi standing on oval">
                 <img src="content/theme/img/AngularJS-Shield-large2.png" alt="Kiwi standing on oval">
                 <img src="content/theme/img/redis-300dpi2.png" alt="Kiwi standing on oval">
