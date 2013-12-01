@@ -146,8 +146,8 @@ h1,h2,h3,h4,h5,h6 {
     font-family: 'bitterregular', Helvetica, Arial, sans-serif;
 }
 .footer {
-    margin-top: 4em;
-    padding: 2em;
+    margin-top: 5em;
+    padding: 1.1em;
     background-color: #262829;
 }
 .img_align > img {
