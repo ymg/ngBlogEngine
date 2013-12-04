@@ -1,0 +1,43 @@
+<h2>Hello,World</h2>
+<hr/>
+<em>yes</em>
+<div ng-controller="BlogPostsCtrl">
+<pre><code>
+func Save(c appengine.Context, obj interface{}) (key *datastore.Key, err error) {
+	kind, val := reflect.TypeOf(obj), reflect.ValueOf(obj)
+	str := val
+	if val.Kind().String() == "ptr" {
+		kind, str = kind.Elem(), val.Elem()
+	}
+	if str.Kind().String() != "struct" {
+		return nil, errors.New("Must pass a valid object to struct")
+	}
+	dsKind := kind.String()
+	if li := strings.LastIndex(dsKind, "."); li >= 0 {
+		//Format kind to be in a standard format used for datastore
+		dsKind = dsKind[li+1:]
+	}
+	idField := str.FieldByName("ID")
+	if idField.IsValid() && idField.Int() != 0 {
+		key = datastore.NewKey(c, dsKind, "", idField.Int(), nil)
+	} else {
+		key = datastore.NewIncompleteKey(c, dsKind, nil)
+	}
+	if bsMethod := val.MethodByName("BeforeSave"); bsMethod.IsValid() {
+		bsMethod.Call([]reflect.Value{reflect.ValueOf(c)})
+	}
+	key, err = datastore.Put(c, key, obj)
+	if err != nil {
+		c.Errorf("[utils/Save]: %v", err.Error())
+	} else {
+		if idField.IsValid() {
+			idField.SetInt(key.IntID())
+		}
+		if asMethod := val.MethodByName("AfterSave"); asMethod.IsValid() {
+			asMethod.Call([]reflect.Value{reflect.ValueOf(c), reflect.ValueOf(key)})
+		}
+	}
+	return
+}
+</code></pre>
+</div>

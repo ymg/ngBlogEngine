@@ -25,11 +25,15 @@ func (this *MainController) Get() {
 	SetHeaders(&this.Controller)
 	sessionTypeTest := &TestType{"Yasser", "28"}
 	this.SetSession("token", sessionTypeTest)
+	this.XsrfToken()
+
 	this.TplNames = "index.html"
 }
 
 func (this *AuthenticationController) Get() {
 	SetHeaders(&this.Controller)
+
+	fmt.Printf("\nCSRF token value: %s\n", this.CheckXsrfCookie())
 
 	post := &Post{}
 	post.Title = "Angular MicroBlog!"
@@ -69,14 +73,20 @@ func SetHeaders(this *beego.Controller) {
 
 func main() {
 
+	beego.Router("/api/auth", &AuthenticationController{})
+	beego.Router("/api/auth2", &AuthenticationController{})
+	beego.Router("/api/*", &MainController{})
 	beego.Router("/", &MainController{})
-	beego.Router("/auth", &AuthenticationController{})
+	beego.Router("/*", &MainController{})
 
 	beego.SetStaticPath("/content", "content")
 	beego.ViewsPath = "content"
 	beego.TemplateLeft = "<<<"
 	beego.TemplateRight = ">>>"
 	beego.SessionOn = true
+	beego.EnableXSRF = true
+	beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
+	beego.XSRFExpire = 3600 //cookie expired time，default 60s
 
 	beego.Run()
 }
