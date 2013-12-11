@@ -13,12 +13,12 @@ import (
 //that contains db details of the admin account
 func TestConfigInitialization(t *testing.T) {
 
-	BlogConfig := &JsonConfig{}
+	BlogConfig := &DbConfig{}
 	BlogConfig.Db_addr = "127.0.0.1"
 	BlogConfig.Db_port = "6379"
 	BlogJson, _ := json.Marshal(&BlogConfig)
 
-	AdminConfig := &JsonConfig{}
+	AdminConfig := &DbConfig{}
 	AdminConfig.Db_addr = "192.168.23.161"
 	AdminConfig.Db_port = "6379"
 	AdminJson, _ := json.Marshal(&AdminConfig)
@@ -31,7 +31,7 @@ func TestConfigInitialization(t *testing.T) {
 
 	/* test admin config initialization */
 
-	if admin_cfg, err := NewAdminConfig(); err != nil || admin_cfg == nil {
+	if admin_cfg, err := InitAdminConfig(); err != nil || admin_cfg == nil {
 		t.Error("ADMIN DEFAULT PATH:\tfailed reading configuration file")
 	} else {
 		if admin_cfg.Db_addr == "" || admin_cfg.Db_port == "" {
@@ -40,7 +40,7 @@ func TestConfigInitialization(t *testing.T) {
 		}
 	}
 
-	if custom_admin_cfg, cerr := NewAdminConfigWithPath("admin_config.json"); cerr != nil || custom_admin_cfg == nil {
+	if custom_admin_cfg, cerr := InitAdminConfigWithPath("admin_config.json"); cerr != nil || custom_admin_cfg == nil {
 		t.Error("ADMIN CUSTOM PATH:\tfailed reading configuration file")
 	} else {
 		if custom_admin_cfg.Db_addr == "" || custom_admin_cfg.Db_port == "" {
@@ -51,7 +51,7 @@ func TestConfigInitialization(t *testing.T) {
 
 	/* test blog config initialization */
 
-	if blog_cfg, err := NewBlogConfig(); err != nil || blog_cfg == nil {
+	if blog_cfg, err := InitBlogConfig(); err != nil || blog_cfg == nil {
 		t.Error("BLOG DEFAULT PATH:\tfailed reading configuration file")
 	} else {
 		if blog_cfg.Db_addr == "" || blog_cfg.Db_port == "" {
@@ -60,7 +60,7 @@ func TestConfigInitialization(t *testing.T) {
 		}
 	}
 
-	if custom_blog_cfg, cerr := NewBlogConfigWithPath("blog_config.json"); cerr != nil || custom_blog_cfg == nil {
+	if custom_blog_cfg, cerr := InitBlogConfigWithPath("blog_config.json"); cerr != nil || custom_blog_cfg == nil {
 		t.Error("BLOG CUSTOM PATH:\tfailed reading configuration file")
 	} else {
 		if custom_blog_cfg.Db_addr == "" || custom_blog_cfg.Db_port == "" {

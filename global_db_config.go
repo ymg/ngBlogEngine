@@ -9,14 +9,14 @@ import (
 	//"github.com/garyburd/redigo/redis"
 )
 
-type JsonConfig struct {
+type DbConfig struct {
 	Db_addr string `json:"db"`
 	Db_port string `json:"port"`
 }
 
-func NewAdminConfigWithPath(config_path string) (*JsonConfig, error) {
+func InitAdminConfigWithPath(config_path string) (*DbConfig, error) {
 
-	cfg := new(JsonConfig)
+	cfg := new(DbConfig)
 	_cfg, err := ioutil.ReadFile(config_path)
 
 	if err != nil {
@@ -28,9 +28,9 @@ func NewAdminConfigWithPath(config_path string) (*JsonConfig, error) {
 
 	return cfg, nil
 }
-func NewAdminConfig() (*JsonConfig, error) {
+func InitAdminConfig() (*DbConfig, error) {
 
-	cfg := new(JsonConfig)
+	cfg := new(DbConfig)
 	_cfg, err := ioutil.ReadFile("admin_config.json")
 
 	if err != nil {
@@ -43,9 +43,9 @@ func NewAdminConfig() (*JsonConfig, error) {
 	return cfg, nil
 }
 
-func NewBlogConfigWithPath(config_path string) (*JsonConfig, error) {
+func InitBlogConfigWithPath(config_path string) (*DbConfig, error) {
 
-	cfg := new(JsonConfig)
+	cfg := new(DbConfig)
 	_cfg, err := ioutil.ReadFile(config_path)
 
 	if err != nil {
@@ -57,9 +57,9 @@ func NewBlogConfigWithPath(config_path string) (*JsonConfig, error) {
 
 	return cfg, nil
 }
-func NewBlogConfig() (*JsonConfig, error) {
+func InitBlogConfig() (*DbConfig, error) {
 
-	cfg := new(JsonConfig)
+	cfg := new(DbConfig)
 	_cfg, err := ioutil.ReadFile("blog_config.json")
 
 	if err != nil {

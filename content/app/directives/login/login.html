@@ -1,10 +1,9 @@
-<div>
-    <div class="uk-form-row">
-        <label style="font-weight: normal;" class="uk-form-label" for="keywords">Keyword(s)</label>
-        <input name="keywords" type="text" placeholder="Page(s) to be indexed" class="uk-form-large uk-form-width-large"
-               required="">
-        <button id="submitdb" class="uk-button uk-button-large uk-button-primary" style="margin-left: 25px;"
-                type="submit"><i class="uk-icon-search" style="padding-left: 10px;  padding-right: 10px;"></i></button>
-    </div>
-    <hr class="uk-article-divider">
+<div ng-controller="AuthCtrl">
+    <form name="loginform" class="uk-form" ng-submit="login()">
+        <fieldset>
+            <div class="uk-form-row"><input class="uk-form-large" type="text" ng-model="cred.user" placeholder="Username" required></div>
+            <div class="uk-form-row"><input class="uk-form-large" type="password" ng-model="cred.password" placeholder="Password" required></div>
+            <div class="uk-form-row"><button ng-disabled="loginform.$invalid" class="uk-button uk-button-large" type="submit">Login</button></div>
+        </fieldset>
+    </form>
 </div>

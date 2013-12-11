@@ -131,6 +131,9 @@
     font-style: normal;
 }
 
+a:hover {
+    text-decoration: none;
+}
 pre code {
     white-space: pre;
     overflow-x: auto;
@@ -138,7 +141,7 @@ pre code {
 p {
     font-family: 'bitterbold', Helvetica, Arial, sans-serif;
     line-height: 1.2;
-    font-size: 1.5em;
+    /*font-size: 1.5em;*/
     /*border: 1px solid #d9e0e2;*/
 }
 h1,h2,h3,h4,h5,h6 {
@@ -151,4 +154,33 @@ h1,h2,h3,h4,h5,h6 {
 }
 .img_align > img {
     margin-left: 50px;
+}
+#nav-container {
+    margin:  auto auto 3em auto;
+}
+.nav {
+    float:left;
+    list-style-type:none;
+    padding:0;
+}
+.nav li {
+    display: inline;
+}
+.nav li:nth-child(n+2) {
+    padding-left: 45px;
+}
+
+input.ng-invalid.ng-dirty {
+    border-color: #dc8d99!important;
+    background: #fff7f8!important;
+    color: #c91032!important;
+}
+input.ng-valid.ng-dirty {
+    border-color: #8ec73b!important;
+    background: #fafff2!important;
+    color: #539022!important;
+}
+
+.view {
+    font-size: 18px;
 }

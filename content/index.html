@@ -16,17 +16,19 @@
 <body>
 <div class="uk-container uk-container-center uk-clearfix" style="margin-top: 45px;">
     <div class="uk-grid">
-        <div class="uk-width-1-2" style="font-size: xx-large;" ng-controller="LoginCtrl">
-            <p>
+        <div id="nav-container" class="uk-width-1-1">
+            <ul class="nav">
+                <li><a class="uk-button" href="/login">Login</a></li>
+                <li><a class="uk-button" href="/blog">Blog</a></li>
+            </ul>
+        </div>
+        <div class="uk-width-1-1" ng-controller="LoginCtrl">
+            <h1>
                 {{postList.Title}}
                 {{postList.Date}}
                 {{postList.Body}}
-            </p>
-            <a href="/login">Login</a>
-            <a href="/blog">Blog</a>
-        </div>
-        <div class="uk-width-1-2">
-            <ng-view>
+            </h1>
+            <ng-view class="view">
             </ng-view>
         </div>
     </div>
@@ -55,14 +57,18 @@
 <script src="/content/app/app.js"></script>
 <script>
     hljs.initHighlighting();
-    hlight = function() {
-        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+    hlight = function () {
+        $('pre code').each(function (i, e) {
+            hljs.highlightBlock(e)
+        });
     }
 </script>
-<script src="/content/app/controllers/BlogConfigCtrl.js"></script>
 <script src="/content/app/services/blogConfigService.js"></script>
+<script src="/content/app/services/authenticateAdminService.js"></script>
 <script src="/content/app/services/postService.js"></script>
 <script src="/content/app/controllers/LoginCtrl.js"></script>
+<script src="/content/app/controllers/AuthCtrl.js"></script>
 <script src="/content/app/controllers/BlogPostsCtrl.js"></script>
+<script src="/content/app/controllers/BlogConfigCtrl.js"></script>
 </body>
 </html>

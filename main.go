@@ -1,8 +1,7 @@
-// ngBlogEngine project main.go
 package main
 
 import (
-	//"encoding/json"
+	"encoding/json"
 	"fmt"
 
 	"github.com/astaxie/beego"
@@ -62,6 +61,25 @@ func (this *AuthenticationController) Get() {
 	}*/
 }
 
+func (this *AuthenticationController) Post() {
+
+	SetHeaders(&this.Controller)
+
+	var cred map[string]interface{}
+	err := json.Unmarshal(this.Ctx.Input.RequestBody, &cred)
+
+	if err == nil && cred["user"] != "" {
+		fmt.Println(cred["user"])
+		fmt.Println(cred["password"])
+		this.Ctx.Output.SetStatus(200)
+	} else {
+		this.Ctx.Output.SetStatus(403)
+	}
+}
+
+/*
+	set headers and api end points
+*/
 func SetHeaders(this *beego.Controller) {
 	headers := this.Ctx.ResponseWriter.Header()
 	headers.Del("Server")
@@ -70,11 +88,9 @@ func SetHeaders(this *beego.Controller) {
 	headers.Add("X-Frame-Options", "DENY")
 	headers.Add("X-XSS-Protection", "1; mode=block")
 }
-
 func main() {
 
 	beego.Router("/api/auth", &AuthenticationController{})
-	beego.Router("/api/auth2", &AuthenticationController{})
 	beego.Router("/api/*", &MainController{})
 	beego.Router("/", &MainController{})
 	beego.Router("/*", &MainController{})
@@ -87,6 +103,11 @@ func main() {
 	beego.EnableXSRF = true
 	beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
 	beego.XSRFExpire = 3600 //cookie expired time，default 60s
+	beego.EnableGzip = true
+	beego.CopyRequestBody = true
+	beego.HttpTLS = true
+	beego.HttpCertFile = "demo.pem"
+	beego.HttpKeyFile = "demo.key"
 
 	beego.Run()
 }
