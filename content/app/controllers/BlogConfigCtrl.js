@@ -3,7 +3,11 @@
 
 ngBlogApp.controller('BlogConfigCtrl',
     function ($scope, blogConfigService) {
-        blogConfigService.fetchConfig(function (d) {
-            $scope.Blog = d;
-        });
+        blogConfigService.fetchConfig()
+            .then(function (data) {
+                console.log(data);
+                $scope.blog = data;
+            }, function (status) {
+                console.log(status);
+            });
     });

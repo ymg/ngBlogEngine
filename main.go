@@ -3,34 +3,69 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	//"unicode"
+	//"runtime"
+	//"log"
+	//"net/http"
 
 	"github.com/astaxie/beego"
 	//"github.com/garyburd/redigo/redis"
 	"github.com/russross/blackfriday"
 )
 
-type AuthenticationController struct {
+type BaseController struct {
 	beego.Controller
+}
+
+func (this *BaseController) SetHeaders() {
+	headers := this.Ctx.ResponseWriter.Header()
+	headers.Del("Server")
+	headers.Add("Strict-Transport-Security", "max-age=631138519")
+	headers.Add("X-Content-Type-Options", "nosniff")
+	headers.Add("X-Frame-Options", "DENY")
+	headers.Add("X-XSS-Protection", "1; mode=block")
+}
+
+//api controllers
+type AuthenticationController struct {
+	BaseController
 }
 type MainController struct {
-	beego.Controller
+	BaseController
 }
+type PostController struct {
+	BaseController
+}
+
 type TestType struct {
 	name string
 	age  string
 }
 
-func (this *MainController) Get() {
-	SetHeaders(&this.Controller)
-	sessionTypeTest := &TestType{"Yasser", "28"}
-	this.SetSession("token", sessionTypeTest)
-	this.XsrfToken()
+func (this *PostController) Get() {
+	this.SetHeaders()
 
-	this.TplNames = "index.html"
+}
+func (this *PostController) Post() {
+	this.SetHeaders()
+
+	token := this.GetSession("token")
+
+	if token == nil {
+		this.Ctx.Output.SetStatus(403)
+	} else {
+		this.Ctx.Output.SetStatus(200)
+	}
+}
+func (this *PostController) Delete() {
+	this.SetHeaders()
+}
+func (this *PostController) Put() {
+	this.SetHeaders()
 }
 
 func (this *AuthenticationController) Get() {
-	SetHeaders(&this.Controller)
+	this.SetHeaders()
 
 	fmt.Printf("\nCSRF token value: %s\n", this.CheckXsrfCookie())
 
@@ -39,36 +74,35 @@ func (this *AuthenticationController) Get() {
 	post.Body = "Hello from Go 1.1!"
 	post.Date = "17-Nov-2013"
 
-	//r, _ := json.Marshal(&post)
-	//c, _ := redis.Dial("tcp", "localhost:6379")
-	//defer c.Close()
-	//n, _ := c.Do("APPEND", "post", r)
-	//fmt.Println(n)
+	DefaultConfig := &BlogConfig{}
+	DefaultConfig.Description = "I write about code!"
+	DefaultConfig.Gplus = "#"
 
 	output := blackfriday.MarkdownBasic([]byte("##Hello,World\n-------\n_yes_\n\n    js lol epic"))
 	fmt.Println(string(output))
 
-	this.Data["json"] = post
-	this.ServeJson()
-
-	/*token := this.GetSession("token")
+	token := this.GetSession("token").(*TestType)
 
 	if token == nil {
-		this.Ctx.WriteString("no auth token..")
+		fmt.Println("no auth token..")
 	} else {
-		tokenDetails := fmt.Sprintf("token value %v\n", token.(*TestType).name)
-		this.Ctx.WriteString(tokenDetails)
-	}*/
-}
+		tokenDetails := fmt.Sprintf("token value %v\n", token.name)
+		fmt.Println(tokenDetails)
+	}
 
+	this.Data["json"] = DefaultConfig
+	this.ServeJson()
+}
 func (this *AuthenticationController) Post() {
 
-	SetHeaders(&this.Controller)
+	this.SetHeaders()
 
 	var cred map[string]interface{}
 	err := json.Unmarshal(this.Ctx.Input.RequestBody, &cred)
+	_, usr := cred["user"]
+	_, pass := cred["password"]
 
-	if err == nil && cred["user"] != "" {
+	if err == nil && usr && pass {
 		fmt.Println(cred["user"])
 		fmt.Println(cred["password"])
 		this.Ctx.Output.SetStatus(200)
@@ -77,37 +111,38 @@ func (this *AuthenticationController) Post() {
 	}
 }
 
-/*
-	set headers and api end points
-*/
-func SetHeaders(this *beego.Controller) {
-	headers := this.Ctx.ResponseWriter.Header()
-	headers.Del("Server")
-	headers.Add("Strict-Transport-Security", "max-age=631138519")
-	headers.Add("X-Content-Type-Options", "nosniff")
-	headers.Add("X-Frame-Options", "DENY")
-	headers.Add("X-XSS-Protection", "1; mode=block")
+//default controller
+func (this *MainController) Get() {
+	this.SetHeaders()
+
+	sessionTypeTest := &TestType{"Yasser", "28"}
+	this.SetSession("token", sessionTypeTest)
+	this.XsrfToken()
+
+	this.TplNames = "index.html"
 }
+
 func main() {
 
+	beego.Router("/api/authcheck", &PostController{})
+	beego.Router("/api/posts", &PostController{})
+	beego.Router("/api/posts/:id", &PostController{})
 	beego.Router("/api/auth", &AuthenticationController{})
 	beego.Router("/api/*", &MainController{})
 	beego.Router("/", &MainController{})
 	beego.Router("/*", &MainController{})
 
 	beego.SetStaticPath("/content", "content")
+	beego.BeegoServerName = "Microsoft-IIS/8.0"
 	beego.ViewsPath = "content"
 	beego.TemplateLeft = "<<<"
 	beego.TemplateRight = ">>>"
 	beego.SessionOn = true
 	beego.EnableXSRF = true
 	beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
-	beego.XSRFExpire = 3600 //cookie expired time，default 60s
+	beego.XSRFExpire = 3600
 	beego.EnableGzip = true
 	beego.CopyRequestBody = true
-	beego.HttpTLS = true
-	beego.HttpCertFile = "demo.pem"
-	beego.HttpKeyFile = "demo.key"
 
 	beego.Run()
 }
