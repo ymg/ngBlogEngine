@@ -1,0 +1,19 @@
+<div class="postview uk-clearfix">
+    <h1>{{postView.Title}}</h1>
+
+    <div ng-show="loginStatus" style="position: relative; top: -50%" class="uk-float-right"
+         data-uk-dropdown="{mode:'click'}">
+        <div style="font-size: 25px"><i class="uk-icon-cog"></i></div>
+        <div class="uk-dropdown uk-dropdown-small">
+            <ul class="uk-nav uk-nav-dropdown">
+                <li><a href="/edit/{{ postView.Id }}"><i class="uk-icon-edit"></i> Edit</a></li>
+                <li><a href="#"><i class="uk-icon-trash-o"></i> Delete</a></li>
+            </ul>
+        </div>
+    </div>
+    <aside class="uk-text-muted uk-text-bold">{{postView.Date}}</aside>
+    <section class="topicbody" ng-bind-html="postView.Body" ng-cloak>
+    </section>
+
+    {{highlightCode()}}
+</div>

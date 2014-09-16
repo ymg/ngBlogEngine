@@ -4,9 +4,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/garyburd/redigo/redis"
 	"time"
+
+	"github.com/garyburd/redigo/redis"
 )
+
+type account struct {
+	name, role string
+}
+
+type AuthDAO struct{}
 
 //server password and address
 var password string
@@ -15,9 +22,7 @@ var server string
 //conn pool to redis db
 var dbConPool *redis.Pool
 
-type AuthDAO struct{}
-
-func (ad *AuthDAO) AuthDaoInit(dbcfg DbConfig) error {
+func (ad *AuthDAO) InitAuthDao(dbcfg *DbConfig) error {
 
 	server = fmt.Sprintf("%s:%s", dbcfg.Db_addr, dbcfg.Db_port)
 	password = dbcfg.Db_password
@@ -44,15 +49,15 @@ func (ad *AuthDAO) AuthDaoInit(dbcfg DbConfig) error {
 
 	return nil
 }
-func (ad *AuthDAO) EditAdminDetails(new_user string, new_password string) error {
+func (ad *AuthDAO) EditAdminDetails(current_user string) error {
 
-	//hghgh := &Json_config{}
-	//hghgh.Admin_db_addr = "admin_redis_db_addr_here"
-	//hghgh.Blog_db_addr = "blog_redis_db_addr_here"
+	result, err := dbConPool.Get().Do("HGET", "account", "admin")
 
-	//ff, _ := json.Marshal(&hghgh)
+	if err != nil {
+		return err
+	}
 
-	//fmt.Println(string(ff))
+	fmt.Println(string(result.([]byte)))
 
 	return nil
 }

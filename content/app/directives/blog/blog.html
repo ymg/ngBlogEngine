@@ -1,43 +1,36 @@
-<h2>Hello,World</h2>
-<hr/>
-<em>yes</em>
-<div>
-<pre><code>
-func Save(c appengine.Context, obj interface{}) (key *datastore.Key, err error) {
-	kind, val := reflect.TypeOf(obj), reflect.ValueOf(obj)
-	str := val
-	if val.Kind().String() == "ptr" {
-		kind, str = kind.Elem(), val.Elem()
-	}
-	if str.Kind().String() != "struct" {
-		return nil, errors.New("Must pass a valid object to struct")
-	}
-	dsKind := kind.String()
-	if li := strings.LastIndex(dsKind, "."); li >= 0 {
-		//Format kind to be in a standard format used for datastore
-		dsKind = dsKind[li+1:]
-	}
-	idField := str.FieldByName("ID")
-	if idField.IsValid() && idField.Int() != 0 {
-		key = datastore.NewKey(c, dsKind, "", idField.Int(), nil)
-	} else {
-		key = datastore.NewIncompleteKey(c, dsKind, nil)
-	}
-	if bsMethod := val.MethodByName("BeforeSave"); bsMethod.IsValid() {
-		bsMethod.Call([]reflect.Value{reflect.ValueOf(c)})
-	}
-	key, err = datastore.Put(c, key, obj)
-	if err != nil {
-		c.Errorf("[utils/Save]: %v", err.Error())
-	} else {
-		if idField.IsValid() {
-			idField.SetInt(key.IntID())
-		}
-		if asMethod := val.MethodByName("AfterSave"); asMethod.IsValid() {
-			asMethod.Call([]reflect.Value{reflect.ValueOf(c), reflect.ValueOf(key)})
-		}
-	}
-	return
-}
-</code></pre>
+<div class="postview uk-clearfix" infinite-scroll-disabled='busy' infinite-scroll="loadMore()"
+     infinite-scroll-immediate-check="false" infinite-scroll-distance="0.3">
+
+    <div ng-repeat="post in postList" on-finish-render="highlightCode()">
+        <div ng-show="!$first">
+            <hr class="uk-article-divider"/>
+        </div>
+        <div class="uk-margin-large-top uk-margin-bottom">
+            <div ng-show="loginStatus" style="position: relative; top: -50%" class="uk-float-right"
+                 data-uk-dropdown="{mode:'click'}">
+                <div style="font-size: 25px"><i class="uk-icon-cog"></i></div>
+                <div class="uk-dropdown uk-dropdown-small">
+                    <ul class="uk-nav uk-nav-dropdown">
+                        <li><a href="/edit/{{ post.Id }}"><i class="uk-icon-edit"></i> Edit</a></li>
+                        <li><a ng-click="confirmModal()"><i class="uk-icon-trash-o"></i> Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+            <h1><a style="color: inherit;" href="/blog/{{ post.Id }}">{{ post.Title }}</a></h1>
+            <aside class="uk-text-muted uk-text-bold">{{ post.Date }}</aside>
+            <section class="topicbody" ng-bind-html="post.Body" ng-cloak>
+            </section>
+        </div>
+    </div>
+
+    <div id="confirm-del" class="uk-modal">
+        <div class="uk-modal-dialog">
+            <a href="" class="uk-modal-close uk-close"></a>
+            <div class="uk-grid uk-clearfix uk-margin-top">
+                <h3 class="uk-text-center uk-width-1-1 uk-margin-bottom">Are you sure you want to delete this?</h3>
+                <div class="uk-width-1-2"><a ng-click="delete(post.Id)" class="uk-button uk-button-large uk-button-danger uk-float-right">Delete</a></div>
+                <div class="uk-width-1-2"><a ng-click="modal.hide()" class="uk-button uk-button-large uk-float-left">Cancel</a></div>
+            </div>
+        </div>
+    </div>
 </div>

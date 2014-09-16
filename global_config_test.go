@@ -13,12 +13,14 @@ import (
 //that contains db details of the admin account
 func TestConfigInitialization(t *testing.T) {
 
+	//dummy json file
 	DefaultConfig := &DbConfig{}
 	DefaultConfig.Db_addr = "127.0.0.1"
 	DefaultConfig.Db_port = "6379"
 	DefaultConfig.Db_password = "RNG!"
 	DefaultConfig.Bconfig.Description = "I write about code!"
 	DefaultConfig.Bconfig.Gplus = "#"
+	DefaultConfig.Bconfig.BlogTitle = "N/A"
 	DefaultJson, _ := json.MarshalIndent(&DefaultConfig, "\n", "\t")
 
 	ioutil.WriteFile("config.json", []byte(DefaultJson), 0644)

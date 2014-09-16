@@ -10,14 +10,16 @@ import (
 const (
 	Db_addr     = "127.0.0.1"
 	Db_port     = "6379"
-	Db_password = ""
+	Db_password = "random_foo"
 	Description = "description"
 	Gplus       = "google+ url"
+	title       = "No Title"
 )
 
 type BlogConfig struct {
 	Description string `json:"description"`
 	Gplus       string `json:"gplus"`
+	BlogTitle   string `json:"title"`
 }
 type DbConfig struct {
 	Db_addr     string     `json:"db"`
@@ -49,6 +51,8 @@ func InitDbConfig() (*DbConfig, error) {
 		err := WriteConfigJsonToLocal()
 		if err != nil {
 			return nil, err
+		} else {
+			_cfg, _ = ioutil.ReadFile("config.json")
 		}
 	}
 
@@ -66,6 +70,7 @@ func WriteConfigJsonToLocal() error {
 	DefaultConfig.Db_password = Db_password
 	DefaultConfig.Bconfig.Description = Description
 	DefaultConfig.Bconfig.Gplus = Gplus
+	DefaultConfig.Bconfig.BlogTitle = title
 	DefaultJson, _ := json.MarshalIndent(&DefaultConfig, "\n", "\t")
 
 	return ioutil.WriteFile("config.json", []byte(DefaultJson), 0644)

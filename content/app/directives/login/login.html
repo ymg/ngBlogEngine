@@ -1,10 +1,13 @@
-<div ng-controller="AuthCtrl">
+<div>
     <form name="loginform" class="uk-form" ng-submit="login()">
-        <fieldset>
-            <div class="uk-form-row"><input class="uk-form-large" type="text" ng-model="cred.user"
-                                            placeholder="Username" required></div>
-            <div class="uk-form-row"><input class="uk-form-large" type="password" ng-model="cred.password"
-                                            placeholder="Password" required></div>
+        <fieldset data-uk-margin>
+            <legend><h2>Login</h2></legend>
+            <div class="uk-form-row">
+                <input class="uk-form-large" type="text" ng-model="cred.user" placeholder="Username" required>
+            </div>
+            <div class="uk-form-row">
+                <input class="uk-form-large" type="password" ng-model="cred.password" placeholder="Password" required>
+            </div>
             <div class="uk-form-row">
                 <button ng-disabled="loginform.$invalid" class="uk-button uk-button-large" type="submit">Login</button>
             </div>
