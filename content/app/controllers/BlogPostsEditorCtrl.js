@@ -14,7 +14,7 @@ ngBlogApp.controller('BlogPostsEditorCtrl', function ($scope, $window, $location
             postService.createNew(this.postForm)
                 .then(function (status) {
                     if (status === 200) {
-                        $scope.postForm = {}
+                        $scope.postForm = {};
                         markdownEditor.setValue('');
                         $scope.postform.$setPristine();
                     } else {

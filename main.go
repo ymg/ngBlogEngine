@@ -4,7 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/json"
 	"fmt"
-	"log"
+	//"log"
 	"strconv"
 	"strings"
 	"time"
@@ -14,7 +14,7 @@ import (
 	//"net/http"
 
 	"github.com/astaxie/beego"
-	"github.com/howeyc/fsnotify"
+	//"github.com/howeyc/fsnotify"
 	"github.com/russross/blackfriday"
 	//"github.com/garyburd/redigo/redis"
 )
@@ -260,7 +260,7 @@ func (this *MainController) Get() {
 
 func main() {
 
-	watcher, err := fsnotify.NewWatcher()
+	/*watcher, err := fsnotify.NewWatcher()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -286,7 +286,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	defer watcher.Close()
+	defer watcher.Close()*/
 
 	beego.Router("/api/posts", &PostController{})
 	beego.Router("/api/posts/:id", &PostController{})
