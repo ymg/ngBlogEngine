@@ -1,6 +1,6 @@
-it('should check controller as', function () {
+  it('should check controller as', function() {
     var container = element(by.id('ctrl-as-exmpl'));
-    expect(container.element(by.model('settings.name'))
+      expect(container.element(by.model('settings.name'))
         .getAttribute('value')).toBe('John Smith');
 
     var firstRepeat =
@@ -25,4 +25,4 @@ it('should check controller as', function () {
         .element(by.model('contact.value'))
         .getAttribute('value'))
         .toBe('yourname@example.org');
-});
+  });

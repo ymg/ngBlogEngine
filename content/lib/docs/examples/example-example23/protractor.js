@@ -1,5 +1,13 @@
-it('should check ng-click', function () {
-    expect(element(by.binding('count')).getText()).toMatch('0');
-    element(by.css('button')).click();
-    expect(element(by.binding('count')).getText()).toMatch('1');
-});
+  it('should calculate expression in binding', function() {
+    if (browser.params.browser == 'safari') {
+      // Safari can't handle dialogs.
+      return;
+    }
+    element(by.css('[ng-click="greet()"]')).click();
+
+    var alertDialog = browser.switchTo().alert();
+
+    expect(alertDialog.getText()).toEqual('Hello World');
+
+    alertDialog.accept();
+  });

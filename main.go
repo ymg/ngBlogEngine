@@ -253,8 +253,6 @@ func (this *MainController) Get() {
 	sessionTypeTest := &TestType{name: "Yasser", age: "28"}
 	this.SetSession("token", sessionTypeTest)
 
-	this.Data["a"] = "/api/posts"
-
 	this.TplNames = "index.html"
 }
 

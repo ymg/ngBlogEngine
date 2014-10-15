@@ -1,12 +1,17 @@
-describe("expression", function () {
-    beforeEach(function () {
-        browser.get("./examples/example-example93/index-jquery.html");
-    });
-
-    it('should allow user expression testing', function () {
-        element(by.css('.expressions button')).click();
-        var lis = element(by.css('.expressions ul')).element.all(by.repeater('expr in exprs'));
-        expect(lis.count()).toBe(1);
-        expect(lis.get(0).getText()).toEqual('[ X ] 3*10|currency => $30.00');
-    });
+describe("", function() {
+  var rootEl;
+  beforeEach(function() {
+    rootEl = browser.rootEl;
+    browser.get("examples/example-example93/index-jquery.html");
+  });
+  
+   it('should check ng-options', function() {
+     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('red');
+     element.all(by.model('myColor')).first().click();
+     element.all(by.css('select[ng-model="myColor"] option')).first().click();
+     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('black');
+     element(by.css('.nullable select[ng-model="myColor"]')).click();
+     element.all(by.css('.nullable select[ng-model="myColor"] option')).first().click();
+     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('null');
+   });
 });

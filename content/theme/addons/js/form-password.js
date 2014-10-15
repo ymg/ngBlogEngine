@@ -1,5 +1,4 @@
-/*! UIkit 2.10.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-
+/*! UIkit 2.11.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -46,7 +45,7 @@
     });
 
     // init code
-    UI.$doc.on("click.formpassword.uikit", "[data-uk-form-password]", function(e) {
+    UI.$html.on("click.formpassword.uikit", "[data-uk-form-password]", function(e) {
 
         var ele = $(this);
         if (!ele.data("formPassword")) {

@@ -1,17 +1,11 @@
-angular.
-    module('myServiceModule', []).
-    controller('MyController', ['$scope', 'notify', function ($scope, notify) {
-        $scope.callNotify = function (msg) {
-            notify(msg);
-        };
-    }]).
-    factory('notify', ['$window', function (win) {
-        var msgs = [];
-        return function (msg) {
-            msgs.push(msg);
-            if (msgs.length == 3) {
-                win.alert(msgs.join("\n"));
-                msgs = [];
-            }
-        };
+angular.module('mySceApp', ['ngSanitize'])
+  .controller('AppController', ['$http', '$templateCache', '$sce',
+    function($http, $templateCache, $sce) {
+      var self = this;
+      $http.get("test_data.json", {cache: $templateCache}).success(function(userComments) {
+        self.userComments = userComments;
+      });
+      self.explicitlyTrustedHtml = $sce.trustAsHtml(
+          '<span onmouseover="this.textContent=&quot;Explicitly trusted HTML bypasses ' +
+          'sanitization.&quot;">Hover over this text.</span>');
     }]);

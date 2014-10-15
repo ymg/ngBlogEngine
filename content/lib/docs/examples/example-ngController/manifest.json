@@ -1,8 +1,8 @@
 {
-    "name": "example-ngController",
-    "files": [
-        "index-production.html",
-        "app.js",
-        "protractor.js"
-    ]
+  "name": "example-ngController",
+  "files": [
+    "index-production.html",
+    "app.js",
+    "protractor.js"
+  ]
 }

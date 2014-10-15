@@ -1,5 +1,4 @@
-/*! UIkit 2.10.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-
+/*! UIkit 2.11.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -297,7 +296,7 @@
 
 
     // init code
-    UI.$doc.on("focus.datepicker.uikit", "[data-uk-datepicker]", function(e) {
+    UI.$html.on("focus.datepicker.uikit", "[data-uk-datepicker]", function(e) {
 
         var ele = $(this);
         if (!ele.data("datepicker")) {
@@ -307,7 +306,7 @@
         }
     });
 
-    UI.$doc.on("click.datepicker.uikit", function(e) {
+    UI.$html.on("click.datepicker.uikit", function(e) {
 
         var target = $(e.target);
 

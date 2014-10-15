@@ -1,5 +1,4 @@
-/*! UIkit 2.10.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-
+/*! UIkit 2.11.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -145,7 +144,7 @@
                 $this.redraw();
             });
 
-            this.element.attr('data-uk-check-display', 1).on('uk-check-display', function(e) {
+            this.element.attr('data-uk-check-display', 1).on('uk.check.display', function(e) {
                 if(this.htmleditor.is(":visible")) this.fit();
             }.bind(this));
 

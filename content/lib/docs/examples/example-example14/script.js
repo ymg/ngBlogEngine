@@ -1,6 +1,14 @@
-angular.module('ngBindHtmlExample', ['ngSanitize'])
-
-    .controller('ngBindHtmlCtrl', ['$scope', function ngBindHtmlCtrl($scope) {
-        $scope.myHTML =
-            'I am an <code>HTML</code>string with <a href="#">links!</a> and other <em>stuff</em>';
-    }]);
+  angular.module('docsIsolationExample', [])
+    .controller('Controller', ['$scope', function($scope) {
+      $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+      $scope.vojta = { name: 'Vojta', address: '3456 Somewhere Else' };
+    }])
+    .directive('myCustomer', function() {
+      return {
+        restrict: 'E',
+        scope: {
+          customerInfo: '=info'
+        },
+        templateUrl: 'my-customer-plus-vojta.html'
+      };
+    });

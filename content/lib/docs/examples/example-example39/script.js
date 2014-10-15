@@ -1,8 +1,8 @@
-function Ctrl($scope) {
-    $scope.templates =
-        [
-            { name: 'template1.html', url: 'template1.html'},
-            { name: 'template2.html', url: 'template2.html'}
-        ];
-    $scope.template = $scope.templates[0];
-}
+  angular.module('scopeExample', [])
+    .controller('GreetController', ['$scope', '$rootScope', function($scope, $rootScope) {
+      $scope.name = 'World';
+      $rootScope.department = 'Angular';
+    }])
+    .controller('ListController', ['$scope', function($scope) {
+      $scope.names = ['Igor', 'Misko', 'Vojta'];
+    }]);

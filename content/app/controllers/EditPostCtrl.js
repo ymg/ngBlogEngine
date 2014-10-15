@@ -34,6 +34,7 @@ ngBlogApp.controller('EditPostCtrl', function ($location, $scope, $q, $log, $win
                         $scope.postUpdateForm = {}
                         markdownEditor.setValue('');
                         $scope.postform.$setPristine();
+                        $location.path('/blog/' + $routeParams.postId);
                     } else {
                         $location.path('/login');
                     }

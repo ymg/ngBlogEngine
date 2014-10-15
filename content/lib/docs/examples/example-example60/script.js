@@ -1,4 +1,6 @@
-function LogCtrl($scope, $log) {
-    $scope.$log = $log;
-    $scope.message = 'Hello World!';
-}
+  angular.module('bindHtmlExample', ['ngSanitize'])
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.myHTML =
+         'I am an <code>HTML</code>string with ' +
+         '<a href="#">links!</a> and other <em>stuff</em>';
+    }]);

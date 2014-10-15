@@ -1,4 +1,9 @@
-it('should load template defined inside script tag', function () {
-    element(by.css('#tpl-link')).click();
-    expect(element(by.css('#tpl-content')).getText()).toMatch(/Content of the template/);
-});
+  it('should auto compile', function() {
+    var textarea = $('textarea');
+    var output = $('div[compile]');
+    // The initial state reads 'Hello Angular'.
+    expect(output.getText()).toBe('Hello Angular');
+    textarea.clear();
+    textarea.sendKeys('{{name}}!');
+    expect(output.getText()).toBe('Angular!');
+  });
