@@ -8,12 +8,13 @@ ngBlogApp.controller('PostViewCtrl', function ($location, $scope, $q, $window, $
     if ($routeParams.postId) {
         postService.fetchPost($routeParams.postId)
             .then(function (data) {
-                $scope.postView.Id = data[0].Id;
-                $scope.postView.Title = data[0].Title;
-                $scope.postView.Date = data[0].Date;
-                $scope.postView.Body = data[0].Body;
-                $window.document.title = data[0].Title;
-                ;
+
+                $scope.postView.Id = data.Id;
+                $scope.postView.Title = data.Title;
+                $scope.postView.Date = data.Date;
+                $scope.postView.Body = data.Body;
+                $window.document.title = data.Title;
+
             }, function (ignored_status) {
                 //$console.log(ignored_status);
             });

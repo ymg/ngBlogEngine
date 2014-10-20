@@ -53,7 +53,7 @@ func (this *BaseController) SetHeaders() {
 	headers.Add("X-XSS-Protection", "1; mode=block")
 }
 
-//authentication = false
+//authentication = [optional]
 func (this *PostController) Get() {
 	this.SetHeaders()
 
@@ -67,19 +67,58 @@ func (this *PostController) Get() {
 	console.log('Hello, Script handler!');
 	}})()();`)*/
 
-	fmt.Printf("\nPost View Controller reached\n")
+	if this.Ctx.Input.Param(":id") != "" {
+		fmt.Printf("\nReached Single Post\n")
 
-	var postsSlice []*Post
-	var n int
+		var result = &Post{Id: "Random Single Post", Body: `
+		<div class="html" style=""><h1>Spatiosi concipit odore</h1><h2>More agros</h2><p>Lorem markdownum nubilus aevo formicas, meae tantorum non quem genetrix sanguis certe mentito. Aquis et miserae collo Achaidas longa. Sine sorores vitam pantherarum opus sollicitare rerum aesculus veterumque vigor pavet sibi <strong>costumque</strong>? Quos arentis, nostri amore. Moneri in forem vero, distentae; et arma ferarum.</p><pre><code>(def ^:dynamic chunk-size 17)
 
-	if this.Ctx.Request.Header.Get("page") != "" {
-		n, _ = strconv.Atoi(this.Ctx.Request.Header.Get("page"))
+(defn next-chunk [rdr]
+  (let [buf (char-array chunk-size)
+        s (.read rdr buf)]
+  (when (pos? s)
+    (java.nio.CharBuffer/wrap buf 0 s))))
+
+(defn chunk-seq [rdr]
+  (when-let [chunk (next-chunk rdr)]
+    (cons chunk (lazy-seq (chunk-seq rdr)))))</code></pre><p>Auctor invita gerebat solent fuga captus si hederae uterum me mihi mox tangit magnanimus agmen, et crine! Inconsumpta longa deus voce, et nescis tempora cupiunt vocat dare <strong>gratata</strong>: subito.</p><h2>Stratis postquam venit passu</h2><p>Primus esse hoc, te arbor unde alimentaque restat perterrita dictu. Agmen et misit, poscat duxit, <a href="http://omgcatsinspace.tumblr.com/">me</a> moenia, ac humanas undis horas vindex. Alti illi quondam, <em>per quaerit</em> crescendo pariterque mane squamis et doctis et mihi suum pro <a href="http://landyachtz.com/">piasque</a>. Ex quoque quod et haec, derant poposcerat leonum.</p><pre><code>var read = key;
+var ictPppoe = marketDirectxThin + boot_netiquette.user(cybercrime, 821339) +
+        template_bus_xhtml(zoneDigitalReciprocal, 1);
+manet_lossless_parity.virtual_boot_bank = file_pop_margin;
+raw_so_opengl += exabyte_troll(rich_video_pram(drive_dvd_mbr,
+        workstation_character)) - username_ppm_platform.dongle_folder.storage(
+        cdfs_tftp);
+var sqlRibbonRaid = leopardSynIcs;
+</code></pre><p>Et levat spectasse arcem instar insiluit nostro statque longo habent. Manusque gemitu obstantes in audax et possim de nec fuisset imagine. <a href="http://kimjongunlookingatthings.tumblr.com/">Turbine</a> acta silvas feretro superbus Phoebo perque, harenas inque; munera siquid arbore aequalis blandita solvit! Cum Iovis inemptum Pontum: est heros lignoque in lapis, lux. Me donec admirabile pericla quibus.</p><p>Mirantis frustra aetate. Et des <strong>nec quae nigra</strong> colla missis aliena tenebris desiluit, fluctibus. Quae somnia <em>et longum</em> exercent index, regalemque egreditur deum coloribus Lyncus. Sic mihi: <em>eadem</em> candentem lumina requirit saxa, bis Gradivo cupiens! Modo natis, minus desiluit positi pennas vitiaverit primus inexperrectus potitur eluditque caesae nec nos dederis.</p></div>
+		`, Title: "Test Post!!!!", Date: "2014/6/12  12:45PM",
+			Markdown: `#Hello post editor
+		    
+	<script> alert('hello, world); </script>
+			
+			
+##This is a first post edit test
+---------------------
+			
+Lets see if this works`}
+
+		this.Data["json"] = result
+		this.ServeJson()
+
 	} else {
-		n = 2
-	}
 
-	for i := 1; i <= n; i++ {
-		postsSlice = append(postsSlice, &Post{Id: "my-first-post", Body: `
+		fmt.Printf("\nPost View Controller reached\n")
+
+		var postsSlice []*Post
+		var n int
+
+		if this.Ctx.Request.Header.Get("page") != "" {
+			n, _ = strconv.Atoi(this.Ctx.Request.Header.Get("page"))
+		} else {
+			n = 2
+		}
+
+		for i := 1; i <= n; i++ {
+			postsSlice = append(postsSlice, &Post{Id: "my-first-post", Body: `
 		<div class="html" style=""><h1>Spatiosi concipit odore</h1><h2>More agros</h2><p>Lorem markdownum nubilus aevo formicas, meae tantorum non quem genetrix sanguis certe mentito. Aquis et miserae collo Achaidas longa. Sine sorores vitam pantherarum opus sollicitare rerum aesculus veterumque vigor pavet sibi <strong>costumque</strong>? Quos arentis, nostri amore. Moneri in forem vero, distentae; et arma ferarum.</p><pre><code>(def ^:dynamic chunk-size 17)
 
 (defn next-chunk [rdr]
@@ -100,7 +139,7 @@ raw_so_opengl += exabyte_troll(rich_video_pram(drive_dvd_mbr,
 var sqlRibbonRaid = leopardSynIcs;
 </code></pre><p>Et levat spectasse arcem instar insiluit nostro statque longo habent. Manusque gemitu obstantes in audax et possim de nec fuisset imagine. <a href="http://kimjongunlookingatthings.tumblr.com/">Turbine</a> acta silvas feretro superbus Phoebo perque, harenas inque; munera siquid arbore aequalis blandita solvit! Cum Iovis inemptum Pontum: est heros lignoque in lapis, lux. Me donec admirabile pericla quibus.</p><p>Mirantis frustra aetate. Et des <strong>nec quae nigra</strong> colla missis aliena tenebris desiluit, fluctibus. Quae somnia <em>et longum</em> exercent index, regalemque egreditur deum coloribus Lyncus. Sic mihi: <em>eadem</em> candentem lumina requirit saxa, bis Gradivo cupiens! Modo natis, minus desiluit positi pennas vitiaverit primus inexperrectus potitur eluditque caesae nec nos dederis.</p></div>
 		`, Title: fmt.Sprintf("Post # %v", i), Date: "2014/6/12  12:45PM",
-			Markdown: `#Hello post editor
+				Markdown: `#Hello post editor
 		    
 	<script> alert('hello, world); </script>
 			
@@ -109,16 +148,17 @@ var sqlRibbonRaid = leopardSynIcs;
 ---------------------
 			
 Lets see if this works`})
+		}
+
+		//time.Sleep(2 * time.Second)
+
+		this.Data["json"] = postsSlice
+		this.ServeJson()
 	}
-
-	//time.Sleep(2 * time.Second)
-
-	this.Data["json"] = postsSlice
-	this.ServeJson()
 
 }
 
-//authentication = true
+//authentication = [true]
 func (this *PostController) Post() {
 	this.SetHeaders()
 	token := this.GetSession("token")
@@ -144,12 +184,12 @@ func (this *PostController) Post() {
 	}
 }
 
-//authentication = true
+//authentication = [true]
 func (this *PostController) Delete() {
 	this.SetHeaders()
 }
 
-//authentication = true
+//authentication = [true]
 func (this *PostController) Put() {
 	this.SetHeaders()
 
@@ -220,7 +260,7 @@ func (this *AuthenticationController) Put() {
 	}
 }
 
-//authentication = true
+//authentication = [true]
 func (this *ConfigurationController) Get() {
 	this.SetHeaders()
 
@@ -243,7 +283,7 @@ func (this *ConfigurationController) Get() {
 	this.ServeJson()
 }
 
-//authentication = true
+//authentication = [true]
 func (this *ConfigurationController) Put() {}
 
 //default controller
