@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="/content/lib/loading-bar.min.css"/>
     <link rel="stylesheet" href="/content/theme/css/uikit.almost-flat.min.css"/>
     <link rel="stylesheet" href="/content/theme/addons/css/notify.almost-flat.min.css"/>
+    <link rel="stylesheet" href="/content/theme/addons/css/htmleditor.almost-flat.min.css"/>
     <link rel="stylesheet" href="/content/theme/addons/css/codemirror.css"/>
-    <link rel="stylesheet" href="/content/theme/addons/uikit.addons.css/uikit.almost-flat.addons.min.css"/>
     <link rel="stylesheet" href="/content/theme/highlightjs/styles/monokai_sublime.css"/>
     <link rel="stylesheet" href="/content/theme/css/app.css"/>
     <script src="/content/lib/modernizr.min.js"></script>
@@ -45,8 +45,7 @@
                                 </ul>
                             </li>
                             <li><a ng-class="{ 'uk-active': activePath=='/contact' }" href="/contact">Contact</a></li>
-                            <li ng-show="loginStatus" ng-class="{ 'uk-active': activePath=='/logout' }"><a
-                                    href="/logout">Logout</a></li>
+                            <li ng-show="loginStatus" ng-class="{ 'uk-active': activePath=='/logout' }"><a href="/logout">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -60,10 +59,8 @@
 
                     <div class="uk-dropdown uk-dropdown-small">
                         <ul class="uk-nav uk-nav-dropdown">
-                            <li ng-class="{ 'uk-active': activePath=='/dbconfig' }"><a href="/dbconfig">DB
-                                configuration</a></li>
-                            <li ng-class="{ 'uk-active': activePath=='/metaconfig' }"><a href="/metaconfig">Meta
-                                Configuration</a></li>
+                            <li ng-class="{ 'uk-active': activePath=='/dbconfig' }"><a href="/dbconfig">DB configuration</a></li>
+                            <li ng-class="{ 'uk-active': activePath=='/metaconfig' }"><a href="/metaconfig">Meta Configuration</a></li>
                             <li ng-class="{ 'uk-active': activePath=='/editor' }"><a href="/editor">New Post</a></li>
                         </ul>
                     </div>
@@ -94,17 +91,26 @@
 
 <script src="/content/lib/jquery-2.1.1.min.js"></script>
 <script src="/content/theme/js/uikit.min.js"></script>
+
 <!-- UIKIT MD editor imports -->
 <script src="/content/theme/addons/js/codemirror.js"></script>
 <script src="/content/theme/addons/js/markdown.js"></script>
 <script src="/content/theme/addons/js/overlay.js"></script>
 <script src="/content/theme/addons/js/xml.js"></script>
 <script src="/content/theme/addons/js/gfm.js"></script>
-<script src="/content/theme/addons/js/marked.js"></script>
+<script src="/content/theme/addons/js/marked.min.js"></script>
 <!-- UIKIT MD editor imports -->
-<script src="/content/theme/addons/js/htmleditor.min.js"></script>
-<script src="/content/theme/addons/js/notify.js"></script>
 <script src="/content/lib/highlight.pack.js"></script>
+<!-- UIKit core and components -->
+<script src="/content/theme/addons/js/dropdown.min.js"></script>
+<script src="/content/theme/addons/js/modal.min.js"></script>
+<script src="/content/theme/addons/js/htmleditor.min.js"></script>
+<script src="/content/theme/addons/js/notify.min.js"></script>
+<!-- UIKit core and components -->
+
+<script src="/content/theme/addons/js/core.min.js"></script>
+
+
 <script src="/content/lib/angular.min.js"></script>
 <script src="/content/lib/ng-infinite-scroll.min.js"></script>
 <script src="/content/lib/angular-sanitize.min.js"></script>
@@ -128,6 +134,5 @@
 <script src="/content/app/controllers/BlogConfigCtrl.js"></script>
 <script src="/content/app/controllers/NavCtrl.js"></script>
 <script src="/content/app/controllers/ContactCtrl.js"></script>
-<script src="/content/app/controllers/MdEditorCtrl.js"></script>
 </body>
 </html>

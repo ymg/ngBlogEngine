@@ -187,6 +187,8 @@ func (this *PostController) Post() {
 //authentication = [true]
 func (this *PostController) Delete() {
 	this.SetHeaders()
+
+	fmt.Println("Post was deleted!!")
 }
 
 //authentication = [true]

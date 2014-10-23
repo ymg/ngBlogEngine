@@ -12,9 +12,9 @@ ngBlogApp.controller('EditPostCtrl', function ($location, $scope, $q, $log, $win
         var markdownEditor = angular.element('.CodeMirror')[0].CodeMirror;
         postService.fetchPost($routeParams.postId)
             .then(function (post) {
-                $scope.postUpdateForm.Id = post[0].Id;
-                $scope.postUpdateForm.title = post[0].Title;
-                markdownEditor.setValue(post[0].Markdown);
+                $scope.postUpdateForm.Id = post.Id;
+                $scope.postUpdateForm.title = post.Title;
+                markdownEditor.setValue(post.Markdown);
             }, function (ignored_status) {
                 $log.info('failed fetching post' + ignored_status);
             });
