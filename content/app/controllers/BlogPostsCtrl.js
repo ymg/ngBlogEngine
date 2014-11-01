@@ -7,7 +7,7 @@ ngBlogApp.controller('BlogPostsCtrl', function ($scope, $window, $location, $rou
     $scope.busy = false;
     $scope.page = 0;
 
-    $scope.modal = angular.element.UIkit.modal("#confirm-del", { bgclose: false });
+    $scope.modal = angular.element.UIkit.modal("#confirm-del", {bgclose: false});
 
     $scope.loadMore = function () {
         this.busy = true;
@@ -21,10 +21,6 @@ ngBlogApp.controller('BlogPostsCtrl', function ($scope, $window, $location, $rou
             function (s) {
                 $scope.busy = true;
             });
-    };
-
-    $scope.confirmModal = function () {
-        this.modal.show();
     };
 
     $scope.delete = function (id) {

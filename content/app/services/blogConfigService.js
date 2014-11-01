@@ -2,6 +2,7 @@
 
 
 ngBlogApp.service('blogConfigService', function ($log, $http, $q) {
+
     this.fetchConfig = function () {
 
         var deferred = $q.defer();

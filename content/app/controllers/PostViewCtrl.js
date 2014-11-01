@@ -5,6 +5,8 @@ ngBlogApp.controller('PostViewCtrl', function ($location, $scope, $q, $window, $
 
     $scope.postView = {};
 
+    $scope.modal = angular.element.UIkit.modal("#confirm-del", {bgclose: false});
+
     if ($routeParams.postId) {
         postService.fetchPost($routeParams.postId)
             .then(function (data) {
@@ -21,4 +23,13 @@ ngBlogApp.controller('PostViewCtrl', function ($location, $scope, $q, $window, $
     } else {
         $location.path('/blog');
     }
+
+    $scope.delete = function (id) {
+        postService.deletePost(id).
+            then(function (d) {
+                $route.reload();
+            },
+            function (s) {
+            });
+    };
 });

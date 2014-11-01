@@ -43,6 +43,9 @@ type PostController struct {
 type ConfigurationController struct {
 	BaseController
 }
+type DbConfigurationController struct {
+	BaseController
+}
 
 func (this *BaseController) SetHeaders() {
 	headers := this.Ctx.ResponseWriter.Header()
@@ -51,6 +54,10 @@ func (this *BaseController) SetHeaders() {
 	headers.Add("X-Content-Type-Options", "nosniff")
 	headers.Add("X-Frame-Options", "SAMEORIGIN")
 	headers.Add("X-XSS-Protection", "1; mode=block")
+}
+
+func AuthCheck(c *BaseController) {
+
 }
 
 //authentication = [optional]
@@ -188,7 +195,9 @@ func (this *PostController) Post() {
 func (this *PostController) Delete() {
 	this.SetHeaders()
 
-	fmt.Println("Post was deleted!!")
+	fmt.Println(this.Ctx.Input.Param(":id"))
+
+	this.Ctx.Output.Body([]byte("asdadasda"))
 }
 
 //authentication = [true]
@@ -270,7 +279,7 @@ func (this *ConfigurationController) Get() {
 
 	post := &Post{}
 	post.Title = "Angular MicroBlog!"
-	post.Body = "Hello from Go 1.1!"
+	post.Body = "Hello from Go 1.3!"
 	post.Date = "17-Nov-2013"
 
 	DefaultConfig := &BlogConfig{}
@@ -287,6 +296,19 @@ func (this *ConfigurationController) Get() {
 
 //authentication = [true]
 func (this *ConfigurationController) Put() {}
+
+//authentication = [true]
+func (this *DbConfigurationController) Get() {
+
+	this.SetHeaders()
+
+	InitDbConfig()
+
+	this.Data["json"] = GlobalCfg
+
+	this.ServeJson()
+
+}
 
 //default controller
 func (this *MainController) Get() {
@@ -333,12 +355,13 @@ func main() {
 	beego.Router("/api/login", &AuthenticationController{})
 	beego.Router("/api/logout", &AuthenticationController{})
 	beego.Router("/api/config", &ConfigurationController{})
+	beego.Router("/api/dbconfig", &DbConfigurationController{})
 	beego.Router("/api/*", &MainController{})
 	beego.Router("/", &MainController{})
 	beego.Router("/*", &MainController{})
 
 	beego.SetStaticPath("/content", "content")
-	beego.RunMode = "test"
+	beego.RunMode = "prod"
 	beego.BeegoServerName = "Microsoft-IIS/8.0"
 	beego.ViewsPath = "content"
 	beego.TemplateLeft = "<<<"

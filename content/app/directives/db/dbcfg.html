@@ -1,0 +1,34 @@
+<div>
+    <form name="blogCfg" class="uk-form" ng-submit="updateConfig()">
+        <fieldset>
+            <legend><h2>Blog Database Configuration</h2></legend>
+            <div class="uk-form-row">
+                <input name="dburl"
+                       ng-class="{ 'ng-invalid.ng-dirty' : blogCfg.dburl.$invalid && !blogCfg.dburl.$pristine }"
+                       ng-model="dburl" class="uk-form-large uk-form-width-medium"
+                       type="text" ng-pattern="/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/"
+                       placeholder="Enter DB Address" required>
+                <input name="dbport"
+                       ng-class="{ 'ng-invalid.ng-dirty' : blogCfg.dbport.$invalid && !blogCfg.dbport.$pristine }"
+                       ng-model="dbport" class="uk-form-large uk-form-width-small"
+                       type="number"
+                       placeholder="Enter DB Port" required>
+            </div>
+            <div class="uk-form-row">
+                <input name="dbpass"
+                       ng-class="{ 'ng-invalid.ng-dirty' : blogCfg.dbpass.$invalid && !blogCfg.dbpass.$pristine }"
+                       ng-model="dbpass" class="uk-form-large uk-form-width-medium"
+                       type="text"
+                       placeholder="Enter DB Password" required>
+            </div>
+            <div class="uk-form-row">
+                <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-6 uk-hidden-small" ng-disabled="blogCfg.$invalid" type="submit">Update
+                    Configuration
+                </button>
+                <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-1 uk-hidden-large uk-hidden-medium" ng-disabled="blogCfg.$invalid"
+                        type="submit">Update Configuration
+                </button>
+            </div>
+        </fieldset>
+    </form>
+</div>

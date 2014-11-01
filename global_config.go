@@ -28,6 +28,8 @@ type DbConfig struct {
 	Bconfig     BlogConfig `json:"BlogConfig"`
 }
 
+var GlobalCfg *DbConfig
+
 func InitDbConfigWithPath(config_path string) (*DbConfig, error) {
 
 	cfg := new(DbConfig)
@@ -39,6 +41,8 @@ func InitDbConfigWithPath(config_path string) (*DbConfig, error) {
 	if err := json.Unmarshal(_cfg, &cfg); err != nil {
 		return nil, err
 	}
+
+	GlobalCfg = cfg
 
 	return cfg, nil
 }
@@ -59,6 +63,8 @@ func InitDbConfig() (*DbConfig, error) {
 	if err := json.Unmarshal(_cfg, &cfg); err != nil {
 		return nil, err
 	}
+
+	GlobalCfg = cfg
 
 	return cfg, nil
 }
