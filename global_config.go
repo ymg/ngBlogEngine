@@ -22,9 +22,9 @@ type BlogConfig struct {
 	BlogTitle   string `json:"title"`
 }
 type DbConfig struct {
-	Db_addr     string     `json:"db"`
-	Db_port     string     `json:"port"`
-	Db_password string     `json:"password"`
+	Db_addr     string     `json:"dburl"`
+	Db_port     string     `json:"dbport"`
+	Db_password string     `json:"dbpass"`
 	Bconfig     BlogConfig `json:"BlogConfig"`
 }
 

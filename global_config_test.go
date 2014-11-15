@@ -5,7 +5,7 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"os"
+	//"os"
 	"testing"
 )
 
@@ -25,7 +25,7 @@ func TestConfigInitialization(t *testing.T) {
 
 	ioutil.WriteFile("config.json", []byte(DefaultJson), 0644)
 
-	defer os.Remove("config.json")
+	//defer os.Remove("config.json")
 
 	/* test config initialization */
 

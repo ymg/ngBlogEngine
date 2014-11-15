@@ -12,7 +12,7 @@
                 <div class="uk-dropdown uk-dropdown-small">
                     <ul class="uk-nav uk-nav-dropdown">
                         <li><a href="/edit/{{ post.Id }}"><i class="uk-icon-edit"></i> Edit</a></li>
-                        <li><a ng-click="modal.show()"><i class="uk-icon-trash-o"></i> Delete</a></li>
+                        <li><a ng-click="modal(post.Id)"><i class="uk-icon-trash-o"></i> Delete</a></li>
                     </ul>
                 </div>
             </div>
@@ -21,18 +21,20 @@
             <section class="topicbody" ng-bind-html="post.Body" ng-cloak>
             </section>
         </div>
-    </div>
 
-    <div id="confirm-del" class="uk-modal">
-        <div class="uk-modal-dialog">
-            <a href="" class="uk-modal-close uk-close"></a>
+        <div id="confirm-del-{{ post.Id }}" class="uk-modal">
+            <div class="uk-modal-dialog">
+                <a href="" class="uk-modal-close uk-close"></a>
 
-            <div class="uk-grid uk-clearfix uk-margin-top">
-                <h3 class="uk-text-center uk-width-1-1 uk-margin-bottom">Are you sure you want to delete this?</h3>
+                <div class="uk-grid uk-clearfix uk-margin-top">
+                    <h3 class="uk-text-center uk-width-1-1 uk-margin-bottom">Are you sure you want to delete this?</h3>
 
-                <div class="uk-width-1-2"><a ng-click="delete(post.Id)" class="uk-button uk-button-large uk-button-danger uk-float-right">Delete</a></div>
-                <div class="uk-width-1-2"><a ng-click="modal.hide()" class="uk-button uk-button-large uk-float-left">Cancel</a></div>
+                    <div class="uk-width-1-2"><a ng-click="delete(post.Id)" class="uk-button uk-button-large uk-button-danger uk-float-right">Delete</a></div>
+                    <div class="uk-width-1-2"><a ng-click="modal.hide()" class="uk-button uk-button-large uk-float-left">Cancel</a></div>
+                </div>
             </div>
         </div>
     </div>
+
+
 </div>

@@ -125,7 +125,7 @@ Lets see if this works`}
 		}
 
 		for i := 1; i <= n; i++ {
-			postsSlice = append(postsSlice, &Post{Id: "my-first-post", Body: `
+			postsSlice = append(postsSlice, &Post{Id: fmt.Sprintf("my-first-post-%v", i), Body: `
 		<div class="html" style=""><h1>Spatiosi concipit odore</h1><h2>More agros</h2><p>Lorem markdownum nubilus aevo formicas, meae tantorum non quem genetrix sanguis certe mentito. Aquis et miserae collo Achaidas longa. Sine sorores vitam pantherarum opus sollicitare rerum aesculus veterumque vigor pavet sibi <strong>costumque</strong>? Quos arentis, nostri amore. Moneri in forem vero, distentae; et arma ferarum.</p><pre><code>(def ^:dynamic chunk-size 17)
 
 (defn next-chunk [rdr]
@@ -197,7 +197,7 @@ func (this *PostController) Delete() {
 
 	fmt.Println(this.Ctx.Input.Param(":id"))
 
-	this.Ctx.Output.Body([]byte("asdadasda"))
+	this.Ctx.Output.SetStatus(200)
 }
 
 //authentication = [true]
@@ -361,7 +361,7 @@ func main() {
 	beego.Router("/*", &MainController{})
 
 	beego.SetStaticPath("/content", "content")
-	beego.RunMode = "prod"
+	beego.RunMode = "test"
 	beego.BeegoServerName = "Microsoft-IIS/8.0"
 	beego.ViewsPath = "content"
 	beego.TemplateLeft = "<<<"
@@ -369,7 +369,7 @@ func main() {
 	beego.MaxMemory = 5 << 20
 	beego.SessionOn = true
 	beego.SessionName = "ymg.account"
-	beego.SessionHashKey = rndString(KEYLENGTH)
+	//beego.SessionHashKey = rndString(KEYLENGTH)
 	beego.EnableXSRF = true
 	beego.XSRFKEY = rndString(KEYLENGTH)
 	beego.XSRFExpire = 60 * 60 * 24 // 60 sec * 60 min * 24 hours

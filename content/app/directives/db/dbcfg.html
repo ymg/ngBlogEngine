@@ -1,24 +1,24 @@
 <div>
-    <form name="blogCfg" class="uk-form" ng-submit="updateConfig()">
+    <form name="dbCfg" class="uk-form" ng-submit="updateConfig()">
         <fieldset>
             <legend><h2>Blog Database Configuration</h2></legend>
             <div class="uk-form-row">
                 <input name="dburl"
-                       ng-class="{ 'ng-invalid.ng-dirty' : blogCfg.dburl.$invalid && !blogCfg.dburl.$pristine }"
-                       ng-model="dburl" class="uk-form-large uk-form-width-medium"
+                       ng-class="{ 'ng-invalid.ng-dirty' : dbCfg.dburl.$invalid && !dbCfg.dburl.$pristine }"
+                       ng-model="dbCfg.dburl" class="uk-form-large uk-form-width-medium"
                        type="text" ng-pattern="/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/"
                        placeholder="Enter DB Address" required>
                 <input name="dbport"
-                       ng-class="{ 'ng-invalid.ng-dirty' : blogCfg.dbport.$invalid && !blogCfg.dbport.$pristine }"
-                       ng-model="dbport" class="uk-form-large uk-form-width-small"
-                       type="number"
+                       ng-class="{ 'ng-invalid.ng-dirty' : dbCfg.dbport.$invalid && !dbCfg.dbport.$pristine }"
+                       ng-model="dbCfg.dbport" class="uk-form-large uk-form-width-small"
+                       type="text"
                        placeholder="Enter DB Port" required>
             </div>
             <div class="uk-form-row">
                 <input name="dbpass"
-                       ng-class="{ 'ng-invalid.ng-dirty' : blogCfg.dbpass.$invalid && !blogCfg.dbpass.$pristine }"
-                       ng-model="dbpass" class="uk-form-large uk-form-width-medium"
-                       type="text"
+                       ng-class="{ 'ng-invalid.ng-dirty' : dbCfg.dbpass.$invalid && !dbCfg.dbpass.$pristine }"
+                       ng-model="dbCfg.dbpass" class="uk-form-large uk-form-width-medium"
+                       type="password"
                        placeholder="Enter DB Password" required>
             </div>
             <div class="uk-form-row">
