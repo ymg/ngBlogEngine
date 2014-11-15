@@ -310,6 +310,17 @@ func (this *DbConfigurationController) Get() {
 
 }
 
+//authentication = [true]
+func (this *DbConfigurationController) Put() {
+
+	this.SetHeaders()
+
+	this.Data["json"] = GlobalCfg
+
+	this.ServeJson()
+
+}
+
 //default controller
 func (this *MainController) Get() {
 	this.SetHeaders()
