@@ -1,7 +1,10 @@
-  angular.module('eventExample', [])
-    .controller('EventController', ['$scope', function($scope) {
-      $scope.count = 0;
-      $scope.$on('MyEvent', function() {
-        $scope.count++;
-      });
-    }]);
+  function ScrollCtrl($scope, $location, $anchorScroll) {
+    $scope.gotoBottom = function (){
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('bottom');
+
+      // call $anchorScroll()
+      $anchorScroll();
+    };
+  }

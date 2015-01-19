@@ -1,6 +1,7 @@
 <a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/compiler.ngdoc?message=docs(guide%2FHTML Compiler)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
+<h1 id="html-compiler">HTML Compiler</h1>
 <div class="alert alert-warning">
 <strong>Note:</strong> this guide is targeted towards developers who are already familiar with AngularJS basics.
 
@@ -10,7 +11,7 @@ If you want a deeper look into Angular&#39;s compilation process, you&#39;re in 
 </div>
 
 
-<h1 id="overview">Overview</h1>
+<h2 id="overview">Overview</h2>
 <p>Angular&#39;s <a href="api/ng/service/$compile">HTML compiler</a> allows the developer to teach the
 browser new HTML syntax. The compiler allows you to attach behavior to any HTML element or attribute
 and even create new HTML elements or attributes with custom behavior. Angular calls these behavior
@@ -59,12 +60,12 @@ to write directives.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example72')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example3')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example72"
+      path="examples/example-example3"
       module="drag">
 
   
@@ -83,7 +84,7 @@ to write directives.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example72/index.html" name="example-example72"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example3/index.html" name="example-example3"></iframe>
   </div>
 </div>
 
@@ -250,7 +251,7 @@ into the dialog.</p>
 But we would like the template&#39;s scope property <code>title</code> to be the result of interpolating the
 <code>&lt;dialog&gt;</code> element&#39;s <code>title</code> attribute (i.e. <code>&quot;Hello {{username}}&quot;</code>). Furthermore, the buttons expect
 the <code>onOk</code> and <code>onCancel</code> functions to be present in the scope. This limits the usefulness of the
-widget. To solve the mapping issue we use the <code>locals</code> to create local variables which the template
+widget. To solve the mapping issue we use the <code>scope</code> to create local variables which the template
 expects as follows:</p>
 <pre><code class="lang-js">scope: {
   title: &#39;@&#39;,             // the title uses the data-binding from the parent scope

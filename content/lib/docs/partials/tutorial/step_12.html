@@ -7,8 +7,8 @@
 <p>In this final step, we will enhance our phonecat web application by attaching CSS and JavaScript
 animations on top of the template code we created before.</p>
 <ul>
-<li>Used the <code>ngAnimate</code> to enable animations throughout the application.</li>
-<li>Common <code>ng</code> directives automatically trigger hooks for animations to tap into.</li>
+<li>We now use the <code>ngAnimate</code> module to enable animations throughout the application.</li>
+<li>We also use common <code>ng</code> directives to automatically trigger hooks for animations to tap into.</li>
 <li>When an animation is found then the animation will run in between the standard DOM operation that
 is being issued on the element at the given time (e.g. inserting and removing nodes on
 <a href="api/ng.directive:ngRepeat"><code>ngRepeat</code></a> or adding and removing classes on
@@ -302,7 +302,8 @@ Much like before, how we used a CSS class to specify an animation, this time the
 occur whenever the CSS class itself changes.</p>
 <p>Whenever a new phone thumbnail is selected, the state changes and the <code>.active</code> CSS class is added
 to the matching profile image and the animation plays.</p>
-<p>Let&#39;s get started and tweak our HTML code on the <code>phone-detail.html</code> page first:</p>
+<p>Let&#39;s get started and tweak our HTML code on the <code>phone-detail.html</code> page first. Notice that we 
+have changed the way we display our large image:</p>
 <p><strong><code>app/partials/phone-detail.html</code>.</strong></p>
 <pre><code class="lang-html">&lt;!-- We&#39;re only changing the top of the file --&gt;
 &lt;div class=&quot;phone-images&quot;&gt;

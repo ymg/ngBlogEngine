@@ -1,7 +1,14 @@
-  it('should alias index positions', function() {
-    var elements = element.all(by.css('.example-init'));
-    expect(elements.get(0).getText()).toBe('list[ 0 ][ 0 ] = a;');
-    expect(elements.get(1).getText()).toBe('list[ 0 ][ 1 ] = b;');
-    expect(elements.get(2).getText()).toBe('list[ 1 ][ 0 ] = c;');
-    expect(elements.get(3).getText()).toBe('list[ 1 ][ 1 ] = d;');
+  var switchElem = element(by.css('[ng-switch]'));
+  var select = element(by.model('selection'));
+
+  it('should start in settings', function() {
+    expect(switchElem.getText()).toMatch(/Settings Div/);
+  });
+  it('should change to home', function() {
+    select.all(by.css('option')).get(1).click();
+    expect(switchElem.getText()).toMatch(/Home Span/);
+  });
+  it('should select default', function() {
+    select.all(by.css('option')).get(2).click();
+    expect(switchElem.getText()).toMatch(/default/);
   });

@@ -7,12 +7,14 @@
 package main
 
 import (
-	"code.google.com/p/go.crypto/bcrypt"
 	"crypto/hmac"
 	"crypto/rand"
 	"crypto/sha512"
+	"encoding/hex"
 	"errors"
 	"io"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 const (
@@ -47,22 +49,20 @@ func (h *Hasher) NewHash(password string) (string, string, error) {
 		return "", "", ErrGeneratingBcrypt
 	}
 
-	return string(p), string(salt), nil
+	return string(p), hex.EncodeToString(salt), nil
 
 }
 
 func (h *Hasher) CompareHash(hashed_password string, salt string, password string) error {
 
 	secret := []byte(password)
-	s := []byte(salt)
+	s, _ := hex.DecodeString(salt)
 
 	hmh := hmac.New(sha512.New, s)
 	hmh.Write(secret)
 	hmac_password := hmh.Sum(nil)
 	hmh.Reset()
 
-	err := bcrypt.CompareHashAndPassword([]byte(hashed_password), hmac_password)
-
-	return err
+	return bcrypt.CompareHashAndPassword([]byte(hashed_password), hmac_password)
 
 }

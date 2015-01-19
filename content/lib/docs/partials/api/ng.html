@@ -1,4 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/Angular.js?message=docs(ng)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/Angular.js?message=docs(ng)%3A%20describe%20your%20change...#L90' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1>
@@ -170,7 +170,7 @@ stripped since angular uses this notation internally.</p>
       
       <tr>
         <td><a href="api/ng/function/angular.injector">angular.injector</a></td>
-        <td><p>Creates an injector function that can be used for retrieving services as well as for
+        <td><p>Creates an injector object that can be used for retrieving services as well as for
 dependency injection (see <a href="guide/di">dependency injection</a>).</p>
 </td>
       </tr>
@@ -222,7 +222,8 @@ the href attribute is empty.</p>
 make the link go to the wrong URL if the user clicks it before
 Angular has a chance to replace the <code>{{hash}}</code> markup with its
 value. Until Angular replaces the markup the link will be broken
-and will most likely return a 404 error.</p>
+and will most likely return a 404 error. The <code>ngHref</code> directive
+solves this problem.</p>
 </td>
       </tr>
       
@@ -389,9 +390,8 @@ expressions. This directive is needed since some HTML elements
         <td><p>Creates a binding that will innerHTML the result of evaluating the <code>expression</code> into the current
 element in a secure way.  By default, the innerHTML-ed content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service.  To utilize this functionality, ensure that <code>$sanitize</code>
 is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies (not in
-core Angular.)  You may also bypass sanitization for values you know are safe. To do so, bind to
-an explicitly trusted value via <a href="api/ng/service/$sce#trustAsHtml">$sce.trustAsHtml</a>.  See the example
-under <a href="api/ng/service/$sce#Example">Strict Contextual Escaping (SCE)</a>.</p>
+core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies, you need to
+include &quot;angular-sanitize.js&quot; in your application.</p>
 </td>
       </tr>
       
@@ -863,7 +863,8 @@ into the browser&#39;s console (if present).</p>
       
       <tr>
         <td><a href="api/ng/service/$q">$q</a></td>
-        <td><p>A promise/deferred implementation inspired by <a href="https://github.com/kriskowal/q">Kris Kowal&#39;s Q</a>.</p>
+        <td><p>A service that helps you run functions asynchronously, and use their return values (or exceptions)
+when they are done processing.</p>
 </td>
       </tr>
       

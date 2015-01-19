@@ -7,20 +7,20 @@
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="logExample">
-    <div ng-controller="LogController">
-    <p>Reload this page with open console, enter text and hit the log button...</p>
-    Message:
-    <input type="text" ng-model="message"/>
-    <button ng-click="$log.log(message)">log</button>
-    <button ng-click="$log.warn(message)">warn</button>
-    <button ng-click="$log.info(message)">info</button>
-    <button ng-click="$log.error(message)">error</button>
-  </div>
+<body ng-app="">
+  <div ng-init="username='A user'">
+  <p ng-init="apptitle='Escaping demo'">{{apptitle}}: \{\{ username = "defaced value"; \}\}
+    </p>
+  <p><strong>{{username}}</strong> attempts to inject code which will deface the
+    application, but fails to accomplish their task, because the server has correctly
+    escaped the interpolation start/end markers with REVERSE SOLIDUS U+005C (backslash)
+    characters.</p>
+  <p>Instead, the result of the attempted script injection is visible, and can be removed
+    from the database by an administrator.</p>
+</div>
 </body>
 </html>

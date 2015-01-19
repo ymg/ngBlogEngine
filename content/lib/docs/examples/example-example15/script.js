@@ -1,6 +1,11 @@
-  angular.module('bindHtmlExample', ['ngSanitize'])
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.myHTML =
-         'I am an <code>HTML</code>string with ' +
-         '<a href="#">links!</a> and other <em>stuff</em>';
-    }]);
+  angular.module('docsTransclusionDirective', [])
+    .controller('Controller', ['$scope', function($scope) {
+      $scope.name = 'Tobias';
+    }])
+    .directive('myDialog', function() {
+      return {
+        restrict: 'E',
+        transclude: true,
+        templateUrl: 'my-dialog.html'
+      };
+    });

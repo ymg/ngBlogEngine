@@ -2,7 +2,8 @@
   "name": "example-example19",
   "files": [
     "index-production.html",
-    "style.css",
-    "protractor.js"
+    "script.js",
+    "my-tabs.html",
+    "my-pane.html"
   ]
 }

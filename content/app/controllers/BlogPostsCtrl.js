@@ -7,8 +7,15 @@ ngBlogApp.controller('BlogPostsCtrl', function ($scope, $window, $location, $rou
     $scope.busy = false;
     $scope.page = 0;
 
-    $scope.modal = function(id){
-        angular.element.UIkit.modal("#confirm-del-"+id, {bgclose: false}).show();
+    $scope.modal = function (id) {
+        return {
+            show: function () {
+                angular.element.UIkit.modal("#confirm-del-" + id, {bgclose: false}).show();
+            },
+            hide: function () {
+                angular.element.UIkit.modal("#confirm-del-" + id, {bgclose: false}).hide();
+            }
+        }
     }
 
     $scope.loadMore = function () {

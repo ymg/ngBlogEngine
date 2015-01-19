@@ -1,10 +1,20 @@
-describe("dev_guide.services.injecting_controllers", function () {
-    beforeEach(function () {
-        browser.get("./examples/example-example81/index-jquery.html");
-    });
+describe("", function() {
+  var rootEl;
+  beforeEach(function() {
+    rootEl = browser.rootEl;
+    browser.get("examples/example-example81/index-jquery.html");
+  });
+  
+  var thumbsUp = element(by.css('span.glyphicon-thumbs-up'));
+  var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
 
-    it('should test service', function () {
-        expect(element(by.id('simple')).element(by.model('message')).getAttribute('value'))
-            .toEqual('test');
-    });
+  it('should check ng-show / ng-hide', function() {
+    expect(thumbsUp.isDisplayed()).toBeFalsy();
+    expect(thumbsDown.isDisplayed()).toBeTruthy();
+
+    element(by.model('checked')).click();
+
+    expect(thumbsUp.isDisplayed()).toBeTruthy();
+    expect(thumbsDown.isDisplayed()).toBeFalsy();
+  });
 });

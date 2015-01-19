@@ -1,0 +1,21 @@
+<div>
+    <form name="metaform" class="uk-form" ng-submit="saveChanges()">
+        <fieldset data-uk-margin>
+            <legend><h2>Change Admin Password</h2></legend>
+            <div class="uk-form-row">
+                <input name="currentpass" class="uk-form-large" type="password" ng-model="metacfgform.currentpass" placeholder="Current Password" required>
+            </div>
+            <div class="uk-form-row uk-margin-medium-top">
+                <input name="newpass" class="uk-form-large" type="password" ng-model="metacfgform.newpass" placeholder="New Password" required> <br/>
+                <input name="confirmnewpass" class="uk-form-large uk-margin-small-top" type="password" ng-model="metacfgform.confirmnewpass"
+                       placeholder="Confirm New Password" data-match="metacfgform.newpass" required>
+            </div>
+            <div class="uk-form-row">
+                <div data-ng-show="metaform.confirmnewpass.$error.match">Passwords do not match!</div>
+            </div>
+            <div class="uk-form-row">
+                <button ng-disabled="metaform.$invalid" class="uk-button uk-button-large" type="submit">Save Changes</button>
+            </div>
+        </fieldset>
+    </form>
+</div>

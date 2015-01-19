@@ -3,30 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example57-jquery</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="orderByExample">
-    <div ng-controller="ExampleController">
-    <table class="friend">
-      <tr>
-        <th><a href="" ng-click="reverse=false;order('name', false)">Name</a>
-          (<a href="" ng-click="order('-name',false)">^</a>)</th>
-        <th><a href="" ng-click="reverse=!reverse;order('phone', reverse)">Phone Number</a></th>
-        <th><a href="" ng-click="reverse=!reverse;order('age',reverse)">Age</a></th>
-      </tr>
-      <tr ng-repeat="friend in friends">
-        <td>{{friend.name}}</td>
-        <td>{{friend.phone}}</td>
-        <td>{{friend.age}}</td>
-      </tr>
-    </table>
-  </div>
+<body ng-app="">
+     <ol ng-init="names=['John', 'Mary', 'Cate', 'Suz']">
+     <li ng-repeat="name in names">
+      <span ng-class-odd="'odd'" ng-class-even="'even'">
+        {{name}} &nbsp; &nbsp; &nbsp;
+      </span>
+     </li>
+   </ol>
 </body>
 </html>

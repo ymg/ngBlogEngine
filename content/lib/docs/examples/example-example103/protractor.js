@@ -1,29 +1,29 @@
-var status = element(by.binding('status'));
-var data = element(by.binding('data'));
-var fetchBtn = element(by.id('fetchbtn'));
-var sampleGetBtn = element(by.id('samplegetbtn'));
-var sampleJsonpBtn = element(by.id('samplejsonpbtn'));
-var invalidJsonpBtn = element(by.id('invalidjsonpbtn'));
+  it('should sanitize the html snippet by default', function() {
+    expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
+      toBe('<p>an html\n<em>click here</em>\nsnippet</p>');
+  });
 
-it('should make an xhr GET request', function() {
-  sampleGetBtn.click();
-  fetchBtn.click();
-  expect(status.getText()).toMatch('200');
-  expect(data.getText()).toMatch(/Hello, \$http!/);
-});
+  it('should inline raw snippet if bound to a trusted value', function() {
+    expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).
+      toBe("<p style=\"color:blue\">an html\n" +
+           "<em onmouseover=\"this.textContent='PWN3D!'\">click here</em>\n" +
+           "snippet</p>");
+  });
 
-// Commented out due to flakes. See https://github.com/angular/angular.js/issues/9185
-// it('should make a JSONP request to angularjs.org', function() {
-//   sampleJsonpBtn.click();
-//   fetchBtn.click();
-//   expect(status.getText()).toMatch('200');
-//   expect(data.getText()).toMatch(/Super Hero!/);
-// });
+  it('should escape snippet without any filter', function() {
+    expect(element(by.css('#bind-default div')).getInnerHtml()).
+      toBe("&lt;p style=\"color:blue\"&gt;an html\n" +
+           "&lt;em onmouseover=\"this.textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
+           "snippet&lt;/p&gt;");
+  });
 
-it('should make JSONP request to invalid URL and invoke the error handler',
-    function() {
-  invalidJsonpBtn.click();
-  fetchBtn.click();
-  expect(status.getText()).toMatch('0');
-  expect(data.getText()).toMatch('Request failed');
-});
+  it('should update', function() {
+    element(by.model('snippet')).clear();
+    element(by.model('snippet')).sendKeys('new <b onclick="alert(1)">text</b>');
+    expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
+      toBe('new <b>text</b>');
+    expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).toBe(
+      'new <b onclick="alert(1)">text</b>');
+    expect(element(by.css('#bind-default div')).getInnerHtml()).toBe(
+      "new &lt;b onclick=\"alert(1)\"&gt;text&lt;/b&gt;");
+  });

@@ -1,4 +1,3 @@
-it('should test service', function () {
-    expect(element(by.id('simple')).element(by.model('message')).getAttribute('value'))
-        .toEqual('test');
+it('should interpolate binding with custom symbols', function() {
+  expect(element(by.binding('demo.label')).getText()).toBe('This binding is brought you by // interpolation symbols.');
 });

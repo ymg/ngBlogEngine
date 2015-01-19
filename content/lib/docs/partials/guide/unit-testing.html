@@ -210,8 +210,8 @@ that such a test tells a story, rather than asserting random bits which don&#39;
 format. They are important because they remove the formatting responsibility from the application
 logic, further simplifying the application logic.</p>
 <pre><code class="lang-js">myModule.filter(&#39;length&#39;, function() {
-return function(text){
-  return (&#39;&#39;+(text||&#39;&#39;)).length;
+return function(text) {
+  return (&#39;&#39; + (text || &#39;&#39;)).length;
 }
 });
 

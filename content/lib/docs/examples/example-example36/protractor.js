@@ -1,3 +1,4 @@
-  it('should add Hello to the name', function() {
-    expect(element(by.binding("'World' | greet")).getText()).toEqual('Hello, World!');
+  it('should test service', function() {
+    expect(element(by.id('simple')).element(by.model('message')).getAttribute('value'))
+        .toEqual('test');
   });

@@ -5,9 +5,10 @@ describe("", function() {
     browser.get("examples/example-example21/index-jquery.html");
   });
   
-  it('should check ng-click', function() {
-    expect(element(by.binding('count')).getText()).toMatch('0');
-    element(by.css('button')).click();
-    expect(element(by.binding('count')).getText()).toMatch('1');
+  it('should allow user expression testing', function() {
+    element(by.css('.expressions button')).click();
+    var lis = element(by.css('.expressions ul')).all(by.repeater('expr in exprs'));
+    expect(lis.count()).toBe(1);
+    expect(lis.get(0).getText()).toEqual('[ X ] 3*10|currency => $30.00');
   });
 });

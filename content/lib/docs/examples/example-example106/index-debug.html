@@ -6,17 +6,19 @@
   
 
   <script src="../../../angular.js"></script>
+  <script src="../../../angular-touch.js"></script>
   <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="myServiceModuleDI">
-    <div id="implicit" ng-controller="MyController">
-    <p>Let's try the notify service, that is implicitly injected into the controller...</p>
-    <input ng-init="message='test'" ng-model="message">
-    <button ng-click="callNotify(message);">NOTIFY</button>
-    <p>(you have to click 3 times to see an alert)</p>
+<body ng-app="ngSwipeRightExample">
+    <div ng-show="!showActions" ng-swipe-left="showActions = true">
+    Some list content, like an email in the inbox
+  </div>
+  <div ng-show="showActions" ng-swipe-right="showActions = false">
+    <button ng-click="reply()">Reply</button>
+    <button ng-click="delete()">Delete</button>
   </div>
 </body>
 </html>

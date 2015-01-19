@@ -1,4 +1,10 @@
- it('should check ng-non-bindable', function() {
-   expect(element(by.binding('1 + 2')).getText()).toContain('3');
-   expect(element.all(by.css('div')).last().getText()).toMatch(/1 \+ 2/);
- });
+   it('should have transcluded', function() {
+     var titleElement = element(by.model('title'));
+     titleElement.clear();
+     titleElement.sendKeys('TITLE');
+     var textElement = element(by.model('text'));
+     textElement.clear();
+     textElement.sendKeys('TEXT');
+     expect(element(by.binding('title')).getText()).toEqual('TITLE');
+     expect(element(by.binding('text')).getText()).toEqual('TEXT');
+   });

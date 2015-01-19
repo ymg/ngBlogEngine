@@ -1,8 +1,4 @@
-  angular.module('scopeExample', [])
-    .controller('GreetController', ['$scope', '$rootScope', function($scope, $rootScope) {
-      $scope.name = 'World';
-      $rootScope.department = 'Angular';
-    }])
-    .controller('ListController', ['$scope', function($scope) {
-      $scope.names = ['Igor', 'Misko', 'Vojta'];
-    }]);
+angular.module('ngAppDemo', []).controller('ngAppDemoController', function($scope) {
+  $scope.a = 1;
+  $scope.b = 2;
+});

@@ -7,22 +7,37 @@
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="docsTabsExample">
-    <my-tabs>
-    <my-pane title="Hello">
-      <h4>Hello</h4>
-      <p>Lorem ipsum dolor sit amet</p>
-    </my-pane>
-    <my-pane title="World">
-      <h4>World</h4>
-      <em>Mauris elementum elementum enim at suscipit.</em>
-      <p><a href ng-click="i = i + 1">counter: {{i || 0}}</a></p>
-    </my-pane>
-  </my-tabs>
+<body ng-app="">
+    <div ng-init="friends = [{name:'John', phone:'555-1276'},
+                           {name:'Mary', phone:'800-BIG-MARY'},
+                           {name:'Mike', phone:'555-4321'},
+                           {name:'Adam', phone:'555-5678'},
+                           {name:'Julie', phone:'555-8765'},
+                           {name:'Juliette', phone:'555-5678'}]"></div>
+
+  Search: <input ng-model="searchText">
+  <table id="searchTextResults">
+    <tr><th>Name</th><th>Phone</th></tr>
+    <tr ng-repeat="friend in friends | filter:searchText">
+      <td>{{friend.name}}</td>
+      <td>{{friend.phone}}</td>
+    </tr>
+  </table>
+  <hr>
+  Any: <input ng-model="search.$"> <br>
+  Name only <input ng-model="search.name"><br>
+  Phone only <input ng-model="search.phone"><br>
+  Equality <input type="checkbox" ng-model="strict"><br>
+  <table id="searchObjResults">
+    <tr><th>Name</th><th>Phone</th></tr>
+    <tr ng-repeat="friendObj in friends | filter:search:strict">
+      <td>{{friendObj.name}}</td>
+      <td>{{friendObj.phone}}</td>
+    </tr>
+  </table>
 </body>
 </html>

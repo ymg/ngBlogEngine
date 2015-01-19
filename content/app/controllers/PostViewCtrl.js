@@ -1,7 +1,7 @@
 'use strict';
 
 
-ngBlogApp.controller('PostViewCtrl', function ($location, $scope, $q, $window, $routeParams, postService, authService) {
+ngBlogApp.controller('PostViewCtrl', function ($location, $scope, $q, $route, $window, $routeParams, postService, authService) {
 
     $scope.postView = {};
 
@@ -13,12 +13,12 @@ ngBlogApp.controller('PostViewCtrl', function ($location, $scope, $q, $window, $
 
                 $scope.postView.Id = data.Id;
                 $scope.postView.Title = data.Title;
+                $window.document.title = data.Title;
                 $scope.postView.Date = data.Date;
                 $scope.postView.Body = data.Body;
-                $window.document.title = data.Title;
 
             }, function (ignored_status) {
-                //$console.log(ignored_status);
+                $location.path('/blog');
             });
     } else {
         $location.path('/blog');

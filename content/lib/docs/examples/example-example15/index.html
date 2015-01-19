@@ -6,15 +6,14 @@
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="../../../angular-sanitize.js"></script>
   <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="bindHtmlExample">
-    <div ng-controller="ExampleController">
-   <p ng-bind-html="myHTML"></p>
+<body ng-app="docsTransclusionDirective">
+    <div ng-controller="Controller">
+    <my-dialog>Check out the contents, {{name}}!</my-dialog>
   </div>
 </body>
 </html>

@@ -1585,6 +1585,11 @@ angular.module('navData', [])
             "type": "page"
           },
           {
+            "name": "Security",
+            "href": "guide/security",
+            "type": "page"
+          },
+          {
             "name": "Internet Explorer Compatibility",
             "href": "guide/ie",
             "type": "page"

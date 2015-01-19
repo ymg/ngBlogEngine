@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/http.js?message=docs($http)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/http.js?message=docs($http)%3A%20describe%20your%20change...#L205' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/http.js#L196' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.28/src/ng/http.js#L205' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -109,6 +109,19 @@ $http.defaults.headers.common.Authorization = &#39;Basic YmVlcDpib29w&#39;
 </code></pre>
 <p>In addition, you can supply a <code>headers</code> property in the config object passed when
 calling <code>$http(config)</code>, which overrides the defaults without changing them globally.</p>
+<p>To explicitly remove a header automatically added via $httpProvider.defaults.headers on a per request basis,
+Use the <code>headers</code> property, setting the desired header to <code>undefined</code>. For example:</p>
+<pre><code class="lang-js">var req = {
+method: &#39;POST&#39;,
+url: &#39;http://example.com&#39;,
+headers: {
+  &#39;Content-Type&#39;: undefined
+},
+data: { test: &#39;test&#39; },
+}
+
+$http(req).success(function(){...}).error(function(){...});
+</code></pre>
 <h1 id="transforming-requests-and-responses">Transforming Requests and Responses</h1>
 <p>Both requests and responses can be transformed using transform functions. By default, Angular
 applies these transformations:</p>
@@ -887,6 +900,94 @@ functions.</li>
     
 
   </li>
+  
+  <li id="patch">
+    <h3><p><code>patch(url, data, [config]);</code></p>
+
+</h3>
+    <div><p>Shortcut method to perform <code>PATCH</code> request.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        url
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Relative or absolute URL specifying the destination of the request</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        data
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">*</a>
+      </td>
+      <td>
+        <p>Request content</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        config
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">Object</a>
+      </td>
+      <td>
+        <p>Optional configuration object</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-httppromise">HttpPromise</a></td>
+    <td><p>Future object</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
   </ul>
   
   
@@ -924,12 +1025,12 @@ default headers, withCredentials as well as request and response transformations
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example58')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example96')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example58"
+      path="examples/example-example96"
       module="httpExample">
 
   
@@ -962,7 +1063,7 @@ default headers, withCredentials as well as request and response transformations
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example58/index.html" name="example-example58"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example96/index.html" name="example-example96"></iframe>
   </div>
 </div>
 

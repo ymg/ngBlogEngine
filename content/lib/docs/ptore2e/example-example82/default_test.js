@@ -5,31 +5,13 @@ describe("", function() {
     browser.get("examples/example-example82/index.html");
   });
   
-  var templateSelect = element(by.model('template'));
-  var includeElem = element(by.css('[ng-include]'));
+  var colorSpan = element(by.css('span'));
 
-  it('should load template1.html', function() {
-    expect(includeElem.getText()).toMatch(/Content of template1.html/);
-  });
-
-  it('should load template2.html', function() {
-    if (browser.params.browser == 'firefox') {
-      // Firefox can't handle using selects
-      // See https://github.com/angular/protractor/issues/480
-      return;
-    }
-    templateSelect.click();
-    templateSelect.all(by.css('option')).get(2).click();
-    expect(includeElem.getText()).toMatch(/Content of template2.html/);
-  });
-
-  it('should change to blank', function() {
-    if (browser.params.browser == 'firefox') {
-      // Firefox can't handle using selects
-      return;
-    }
-    templateSelect.click();
-    templateSelect.all(by.css('option')).get(0).click();
-    expect(includeElem.isPresent()).toBe(false);
+  it('should check ng-style', function() {
+    expect(colorSpan.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
+    element(by.css('input[value=\'set color\']')).click();
+    expect(colorSpan.getCssValue('color')).toBe('rgba(255, 0, 0, 1)');
+    element(by.css('input[value=clear]')).click();
+    expect(colorSpan.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
   });
 });

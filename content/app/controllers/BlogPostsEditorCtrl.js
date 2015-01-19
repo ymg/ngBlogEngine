@@ -4,7 +4,7 @@
 ngBlogApp.controller('BlogPostsEditorCtrl', function ($scope, $window, $location, postService) {
     $window.document.title = 'Post Editor';
 
-    mdarea(jQuery, jQuery.UIkit);
+    $scope.InitMarkDownEditor();
 
     $scope.postForm = {};
     $scope.postNew = function () {

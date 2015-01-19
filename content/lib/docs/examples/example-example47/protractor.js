@@ -1,4 +1,5 @@
-  it('should load template defined inside script tag', function() {
-    element(by.css('#tpl-link')).click();
-    expect(element(by.css('#tpl-content')).getText()).toMatch(/Content of the template/);
+  it('should select Greetings!', function() {
+    expect(element(by.id('greet')).getAttribute('selected')).toBeFalsy();
+    element(by.model('selected')).click();
+    expect(element(by.id('greet')).getAttribute('selected')).toBeTruthy();
   });

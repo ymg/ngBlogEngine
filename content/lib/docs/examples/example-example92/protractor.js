@@ -1,4 +1,3 @@
-  it('should load template defined inside script tag', function() {
-    element(by.css('#tpl-link')).click();
-    expect(element(by.css('#tpl-content')).getText()).toMatch(/Content of the template/);
+  it('should jsonify filtered objects', function() {
+    expect(element(by.binding("{'name':'value'}")).getText()).toMatch(/\{\n  "name": ?"value"\n}/);
   });

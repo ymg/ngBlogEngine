@@ -1,6 +1,556 @@
 // Meta data used by the AngularJS docs app
 angular.module('pagesData', [])
   .value('NG_PAGES', {
+  "api": {
+    "name": "API Reference",
+    "area": "api",
+    "path": "api"
+  },
+  "error/$animate/notcsel": {
+    "name": "notcsel",
+    "area": "error",
+    "path": "error/$animate/notcsel"
+  },
+  "error/$cacheFactory/iid": {
+    "name": "iid",
+    "area": "error",
+    "path": "error/$cacheFactory/iid"
+  },
+  "error/$compile/ctreq": {
+    "name": "ctreq",
+    "area": "error",
+    "path": "error/$compile/ctreq"
+  },
+  "error/$compile/iscp": {
+    "name": "iscp",
+    "area": "error",
+    "path": "error/$compile/iscp"
+  },
+  "error/$compile/multidir": {
+    "name": "multidir",
+    "area": "error",
+    "path": "error/$compile/multidir"
+  },
+  "error/$compile/nodomevents": {
+    "name": "nodomevents",
+    "area": "error",
+    "path": "error/$compile/nodomevents"
+  },
+  "error/$compile/nonassign": {
+    "name": "nonassign",
+    "area": "error",
+    "path": "error/$compile/nonassign"
+  },
+  "error/$compile/selmulti": {
+    "name": "selmulti",
+    "area": "error",
+    "path": "error/$compile/selmulti"
+  },
+  "error/$compile/tpload": {
+    "name": "tpload",
+    "area": "error",
+    "path": "error/$compile/tpload"
+  },
+  "error/$compile/tplrt": {
+    "name": "tplrt",
+    "area": "error",
+    "path": "error/$compile/tplrt"
+  },
+  "error/$compile/uterdir": {
+    "name": "uterdir",
+    "area": "error",
+    "path": "error/$compile/uterdir"
+  },
+  "error/$controller/noscp": {
+    "name": "noscp",
+    "area": "error",
+    "path": "error/$controller/noscp"
+  },
+  "error/$httpBackend/noxhr": {
+    "name": "noxhr",
+    "area": "error",
+    "path": "error/$httpBackend/noxhr"
+  },
+  "error/$injector/cdep": {
+    "name": "cdep",
+    "area": "error",
+    "path": "error/$injector/cdep"
+  },
+  "error/$injector/itkn": {
+    "name": "itkn",
+    "area": "error",
+    "path": "error/$injector/itkn"
+  },
+  "error/$injector/modulerr": {
+    "name": "modulerr",
+    "area": "error",
+    "path": "error/$injector/modulerr"
+  },
+  "error/$injector/nomod": {
+    "name": "nomod",
+    "area": "error",
+    "path": "error/$injector/nomod"
+  },
+  "error/$injector/pget": {
+    "name": "pget",
+    "area": "error",
+    "path": "error/$injector/pget"
+  },
+  "error/$injector/unpr": {
+    "name": "unpr",
+    "area": "error",
+    "path": "error/$injector/unpr"
+  },
+  "error/$interpolate/interr": {
+    "name": "interr",
+    "area": "error",
+    "path": "error/$interpolate/interr"
+  },
+  "error/$interpolate/noconcat": {
+    "name": "noconcat",
+    "area": "error",
+    "path": "error/$interpolate/noconcat"
+  },
+  "error/$location/ihshprfx": {
+    "name": "ihshprfx",
+    "area": "error",
+    "path": "error/$location/ihshprfx"
+  },
+  "error/$location/ipthprfx": {
+    "name": "ipthprfx",
+    "area": "error",
+    "path": "error/$location/ipthprfx"
+  },
+  "error/$location/isrcharg": {
+    "name": "isrcharg",
+    "area": "error",
+    "path": "error/$location/isrcharg"
+  },
+  "error/$parse/isecdom": {
+    "name": "isecdom",
+    "area": "error",
+    "path": "error/$parse/isecdom"
+  },
+  "error/$parse/isecff": {
+    "name": "isecff",
+    "area": "error",
+    "path": "error/$parse/isecff"
+  },
+  "error/$parse/isecfld": {
+    "name": "isecfld",
+    "area": "error",
+    "path": "error/$parse/isecfld"
+  },
+  "error/$parse/isecfn": {
+    "name": "isecfn",
+    "area": "error",
+    "path": "error/$parse/isecfn"
+  },
+  "error/$parse/isecobj": {
+    "name": "isecobj",
+    "area": "error",
+    "path": "error/$parse/isecobj"
+  },
+  "error/$parse/isecwindow": {
+    "name": "isecwindow",
+    "area": "error",
+    "path": "error/$parse/isecwindow"
+  },
+  "error/$parse/lexerr": {
+    "name": "lexerr",
+    "area": "error",
+    "path": "error/$parse/lexerr"
+  },
+  "error/$parse/syntax": {
+    "name": "syntax",
+    "area": "error",
+    "path": "error/$parse/syntax"
+  },
+  "error/$parse/ueoe": {
+    "name": "ueoe",
+    "area": "error",
+    "path": "error/$parse/ueoe"
+  },
+  "error/$resource/badargs": {
+    "name": "badargs",
+    "area": "error",
+    "path": "error/$resource/badargs"
+  },
+  "error/$resource/badcfg": {
+    "name": "badcfg",
+    "area": "error",
+    "path": "error/$resource/badcfg"
+  },
+  "error/$resource/badmember": {
+    "name": "badmember",
+    "area": "error",
+    "path": "error/$resource/badmember"
+  },
+  "error/$resource/badname": {
+    "name": "badname",
+    "area": "error",
+    "path": "error/$resource/badname"
+  },
+  "error/$rootScope/infdig": {
+    "name": "infdig",
+    "area": "error",
+    "path": "error/$rootScope/infdig"
+  },
+  "error/$rootScope/inprog": {
+    "name": "inprog",
+    "area": "error",
+    "path": "error/$rootScope/inprog"
+  },
+  "error/$sanitize/badparse": {
+    "name": "badparse",
+    "area": "error",
+    "path": "error/$sanitize/badparse"
+  },
+  "error/$sce/icontext": {
+    "name": "icontext",
+    "area": "error",
+    "path": "error/$sce/icontext"
+  },
+  "error/$sce/iequirks": {
+    "name": "iequirks",
+    "area": "error",
+    "path": "error/$sce/iequirks"
+  },
+  "error/$sce/imatcher": {
+    "name": "imatcher",
+    "area": "error",
+    "path": "error/$sce/imatcher"
+  },
+  "error/$sce/insecurl": {
+    "name": "insecurl",
+    "area": "error",
+    "path": "error/$sce/insecurl"
+  },
+  "error/$sce/itype": {
+    "name": "itype",
+    "area": "error",
+    "path": "error/$sce/itype"
+  },
+  "error/$sce/iwcard": {
+    "name": "iwcard",
+    "area": "error",
+    "path": "error/$sce/iwcard"
+  },
+  "error/$sce/unsafe": {
+    "name": "unsafe",
+    "area": "error",
+    "path": "error/$sce/unsafe"
+  },
+  "error": {
+    "name": "Error Reference",
+    "area": "error",
+    "path": "error"
+  },
+  "error/jqLite/nosel": {
+    "name": "nosel",
+    "area": "error",
+    "path": "error/jqLite/nosel"
+  },
+  "error/jqLite/offargs": {
+    "name": "offargs",
+    "area": "error",
+    "path": "error/jqLite/offargs"
+  },
+  "error/jqLite/onargs": {
+    "name": "onargs",
+    "area": "error",
+    "path": "error/jqLite/onargs"
+  },
+  "error/ng/areq": {
+    "name": "areq",
+    "area": "error",
+    "path": "error/ng/areq"
+  },
+  "error/ng/badname": {
+    "name": "badname",
+    "area": "error",
+    "path": "error/ng/badname"
+  },
+  "error/ng/btstrpd": {
+    "name": "btstrpd",
+    "area": "error",
+    "path": "error/ng/btstrpd"
+  },
+  "error/ng/cpi": {
+    "name": "cpi",
+    "area": "error",
+    "path": "error/ng/cpi"
+  },
+  "error/ng/cpws": {
+    "name": "cpws",
+    "area": "error",
+    "path": "error/ng/cpws"
+  },
+  "error/ngModel/nonassign": {
+    "name": "nonassign",
+    "area": "error",
+    "path": "error/ngModel/nonassign"
+  },
+  "error/ngOptions/iexp": {
+    "name": "iexp",
+    "area": "error",
+    "path": "error/ngOptions/iexp"
+  },
+  "error/ngPattern/noregexp": {
+    "name": "noregexp",
+    "area": "error",
+    "path": "error/ngPattern/noregexp"
+  },
+  "error/ngRepeat/dupes": {
+    "name": "dupes",
+    "area": "error",
+    "path": "error/ngRepeat/dupes"
+  },
+  "error/ngRepeat/iexp": {
+    "name": "iexp",
+    "area": "error",
+    "path": "error/ngRepeat/iexp"
+  },
+  "error/ngRepeat/iidexp": {
+    "name": "iidexp",
+    "area": "error",
+    "path": "error/ngRepeat/iidexp"
+  },
+  "error/ngTransclude/orphan": {
+    "name": "orphan",
+    "area": "error",
+    "path": "error/ngTransclude/orphan"
+  },
+  "guide/$location": {
+    "name": "Using $location",
+    "area": "guide",
+    "path": "guide/$location"
+  },
+  "guide/animations": {
+    "name": "Animations",
+    "area": "guide",
+    "path": "guide/animations"
+  },
+  "guide/bootstrap": {
+    "name": "Bootstrap",
+    "area": "guide",
+    "path": "guide/bootstrap"
+  },
+  "guide/compiler": {
+    "name": "HTML Compiler",
+    "area": "guide",
+    "path": "guide/compiler"
+  },
+  "guide/concepts": {
+    "name": "Conceptual Overview",
+    "area": "guide",
+    "path": "guide/concepts"
+  },
+  "guide/controller": {
+    "name": "Controllers",
+    "area": "guide",
+    "path": "guide/controller"
+  },
+  "guide/css-styling": {
+    "name": "Working With CSS",
+    "area": "guide",
+    "path": "guide/css-styling"
+  },
+  "guide/databinding": {
+    "name": "Data Binding",
+    "area": "guide",
+    "path": "guide/databinding"
+  },
+  "guide/di": {
+    "name": "Dependency Injection",
+    "area": "guide",
+    "path": "guide/di"
+  },
+  "guide/directive": {
+    "name": "Directives",
+    "area": "guide",
+    "path": "guide/directive"
+  },
+  "guide/e2e-testing": {
+    "name": "E2E Testing",
+    "area": "guide",
+    "path": "guide/e2e-testing"
+  },
+  "guide/expression": {
+    "name": "Expressions",
+    "area": "guide",
+    "path": "guide/expression"
+  },
+  "guide/filter": {
+    "name": "Filters",
+    "area": "guide",
+    "path": "guide/filter"
+  },
+  "guide/forms": {
+    "name": "Forms",
+    "area": "guide",
+    "path": "guide/forms"
+  },
+  "guide/i18n": {
+    "name": "i18n and l10n",
+    "area": "guide",
+    "path": "guide/i18n"
+  },
+  "guide/ie": {
+    "name": "Internet Explorer Compatibility",
+    "area": "guide",
+    "path": "guide/ie"
+  },
+  "guide": {
+    "name": "Developer Guide",
+    "area": "guide",
+    "path": "guide"
+  },
+  "guide/introduction": {
+    "name": "Introduction",
+    "area": "guide",
+    "path": "guide/introduction"
+  },
+  "guide/migration": {
+    "name": "Migrating from 1.0 to 1.2",
+    "area": "guide",
+    "path": "guide/migration"
+  },
+  "guide/module": {
+    "name": "Modules",
+    "area": "guide",
+    "path": "guide/module"
+  },
+  "guide/providers": {
+    "name": "Providers",
+    "area": "guide",
+    "path": "guide/providers"
+  },
+  "guide/scope": {
+    "name": "Scopes",
+    "area": "guide",
+    "path": "guide/scope"
+  },
+  "guide/security": {
+    "name": "Security",
+    "area": "guide",
+    "path": "guide/security"
+  },
+  "guide/services": {
+    "name": "Services",
+    "area": "guide",
+    "path": "guide/services"
+  },
+  "guide/templates": {
+    "name": "Templates",
+    "area": "guide",
+    "path": "guide/templates"
+  },
+  "guide/unit-testing": {
+    "name": "Unit Testing",
+    "area": "guide",
+    "path": "guide/unit-testing"
+  },
+  "misc/contribute": {
+    "name": "Develop",
+    "area": "misc",
+    "path": "misc/contribute"
+  },
+  "misc/downloading": {
+    "name": "Downloading",
+    "area": "misc",
+    "path": "misc/downloading"
+  },
+  "misc/faq": {
+    "name": "FAQ",
+    "area": "misc",
+    "path": "misc/faq"
+  },
+  "misc": {
+    "name": "Miscellaneous",
+    "area": "misc",
+    "path": "misc"
+  },
+  "misc/started": {
+    "name": "Getting Started",
+    "area": "misc",
+    "path": "misc/started"
+  },
+  "tutorial": {
+    "name": "Tutorial",
+    "area": "tutorial",
+    "path": "tutorial"
+  },
+  "tutorial/step_00": {
+    "name": "0 - Bootstrapping",
+    "area": "tutorial",
+    "path": "tutorial/step_00"
+  },
+  "tutorial/step_01": {
+    "name": "1 - Static Template",
+    "area": "tutorial",
+    "path": "tutorial/step_01"
+  },
+  "tutorial/step_02": {
+    "name": "2 - Angular Templates",
+    "area": "tutorial",
+    "path": "tutorial/step_02"
+  },
+  "tutorial/step_03": {
+    "name": "3 - Filtering Repeaters",
+    "area": "tutorial",
+    "path": "tutorial/step_03"
+  },
+  "tutorial/step_04": {
+    "name": "4 - Two-way Data Binding",
+    "area": "tutorial",
+    "path": "tutorial/step_04"
+  },
+  "tutorial/step_05": {
+    "name": "5 - XHRs & Dependency Injection",
+    "area": "tutorial",
+    "path": "tutorial/step_05"
+  },
+  "tutorial/step_06": {
+    "name": "6 - Templating Links & Images",
+    "area": "tutorial",
+    "path": "tutorial/step_06"
+  },
+  "tutorial/step_07": {
+    "name": "7 - Routing & Multiple Views",
+    "area": "tutorial",
+    "path": "tutorial/step_07"
+  },
+  "tutorial/step_08": {
+    "name": "8 - More Templating",
+    "area": "tutorial",
+    "path": "tutorial/step_08"
+  },
+  "tutorial/step_09": {
+    "name": "9 - Filters",
+    "area": "tutorial",
+    "path": "tutorial/step_09"
+  },
+  "tutorial/step_10": {
+    "name": "10 - Event Handlers",
+    "area": "tutorial",
+    "path": "tutorial/step_10"
+  },
+  "tutorial/step_11": {
+    "name": "11 - REST and Custom Services",
+    "area": "tutorial",
+    "path": "tutorial/step_11"
+  },
+  "tutorial/step_12": {
+    "name": "12 - Applying Animations",
+    "area": "tutorial",
+    "path": "tutorial/step_12"
+  },
+  "tutorial/the_end": {
+    "name": "The End",
+    "area": "tutorial",
+    "path": "tutorial/the_end"
+  },
   "api/ng": {
     "name": "ng",
     "area": "api",
@@ -891,569 +1441,39 @@ angular.module('pagesData', [])
     "area": "api",
     "path": "api/ngTouch"
   },
-  "api": {
-    "name": "API Reference",
-    "area": "api",
-    "path": "api"
-  },
-  "error/$animate/notcsel": {
-    "name": "notcsel",
-    "area": "error",
-    "path": "error/$animate/notcsel"
-  },
-  "error/$cacheFactory/iid": {
-    "name": "iid",
-    "area": "error",
-    "path": "error/$cacheFactory/iid"
-  },
-  "error/$compile/ctreq": {
-    "name": "ctreq",
-    "area": "error",
-    "path": "error/$compile/ctreq"
-  },
-  "error/$compile/iscp": {
-    "name": "iscp",
-    "area": "error",
-    "path": "error/$compile/iscp"
-  },
-  "error/$compile/multidir": {
-    "name": "multidir",
-    "area": "error",
-    "path": "error/$compile/multidir"
-  },
-  "error/$compile/nodomevents": {
-    "name": "nodomevents",
-    "area": "error",
-    "path": "error/$compile/nodomevents"
-  },
-  "error/$compile/nonassign": {
-    "name": "nonassign",
-    "area": "error",
-    "path": "error/$compile/nonassign"
-  },
-  "error/$compile/selmulti": {
-    "name": "selmulti",
-    "area": "error",
-    "path": "error/$compile/selmulti"
-  },
-  "error/$compile/tpload": {
-    "name": "tpload",
-    "area": "error",
-    "path": "error/$compile/tpload"
-  },
-  "error/$compile/tplrt": {
-    "name": "tplrt",
-    "area": "error",
-    "path": "error/$compile/tplrt"
-  },
-  "error/$compile/uterdir": {
-    "name": "uterdir",
-    "area": "error",
-    "path": "error/$compile/uterdir"
-  },
-  "error/$controller/noscp": {
-    "name": "noscp",
-    "area": "error",
-    "path": "error/$controller/noscp"
-  },
-  "error/$httpBackend/noxhr": {
-    "name": "noxhr",
-    "area": "error",
-    "path": "error/$httpBackend/noxhr"
-  },
-  "error/$injector/cdep": {
-    "name": "cdep",
-    "area": "error",
-    "path": "error/$injector/cdep"
-  },
-  "error/$injector/itkn": {
-    "name": "itkn",
-    "area": "error",
-    "path": "error/$injector/itkn"
-  },
-  "error/$injector/modulerr": {
-    "name": "modulerr",
-    "area": "error",
-    "path": "error/$injector/modulerr"
-  },
-  "error/$injector/nomod": {
-    "name": "nomod",
-    "area": "error",
-    "path": "error/$injector/nomod"
-  },
-  "error/$injector/pget": {
-    "name": "pget",
-    "area": "error",
-    "path": "error/$injector/pget"
-  },
-  "error/$injector/unpr": {
-    "name": "unpr",
-    "area": "error",
-    "path": "error/$injector/unpr"
-  },
-  "error/$interpolate/interr": {
-    "name": "interr",
-    "area": "error",
-    "path": "error/$interpolate/interr"
-  },
-  "error/$interpolate/noconcat": {
-    "name": "noconcat",
-    "area": "error",
-    "path": "error/$interpolate/noconcat"
-  },
-  "error/$location/ihshprfx": {
-    "name": "ihshprfx",
-    "area": "error",
-    "path": "error/$location/ihshprfx"
-  },
-  "error/$location/ipthprfx": {
-    "name": "ipthprfx",
-    "area": "error",
-    "path": "error/$location/ipthprfx"
-  },
-  "error/$location/isrcharg": {
-    "name": "isrcharg",
-    "area": "error",
-    "path": "error/$location/isrcharg"
-  },
-  "error/$parse/isecdom": {
-    "name": "isecdom",
-    "area": "error",
-    "path": "error/$parse/isecdom"
-  },
-  "error/$parse/isecff": {
-    "name": "isecff",
-    "area": "error",
-    "path": "error/$parse/isecff"
-  },
-  "error/$parse/isecfld": {
-    "name": "isecfld",
-    "area": "error",
-    "path": "error/$parse/isecfld"
-  },
-  "error/$parse/isecfn": {
-    "name": "isecfn",
-    "area": "error",
-    "path": "error/$parse/isecfn"
-  },
-  "error/$parse/isecobj": {
-    "name": "isecobj",
-    "area": "error",
-    "path": "error/$parse/isecobj"
-  },
-  "error/$parse/isecwindow": {
-    "name": "isecwindow",
-    "area": "error",
-    "path": "error/$parse/isecwindow"
-  },
-  "error/$parse/lexerr": {
-    "name": "lexerr",
-    "area": "error",
-    "path": "error/$parse/lexerr"
-  },
-  "error/$parse/syntax": {
-    "name": "syntax",
-    "area": "error",
-    "path": "error/$parse/syntax"
-  },
-  "error/$parse/ueoe": {
-    "name": "ueoe",
-    "area": "error",
-    "path": "error/$parse/ueoe"
-  },
-  "error/$resource/badargs": {
-    "name": "badargs",
-    "area": "error",
-    "path": "error/$resource/badargs"
-  },
-  "error/$resource/badcfg": {
-    "name": "badcfg",
-    "area": "error",
-    "path": "error/$resource/badcfg"
-  },
-  "error/$resource/badmember": {
-    "name": "badmember",
-    "area": "error",
-    "path": "error/$resource/badmember"
-  },
-  "error/$resource/badname": {
-    "name": "badname",
-    "area": "error",
-    "path": "error/$resource/badname"
-  },
-  "error/$rootScope/infdig": {
-    "name": "infdig",
-    "area": "error",
-    "path": "error/$rootScope/infdig"
-  },
-  "error/$rootScope/inprog": {
-    "name": "inprog",
-    "area": "error",
-    "path": "error/$rootScope/inprog"
-  },
-  "error/$sanitize/badparse": {
-    "name": "badparse",
-    "area": "error",
-    "path": "error/$sanitize/badparse"
-  },
-  "error/$sce/icontext": {
-    "name": "icontext",
-    "area": "error",
-    "path": "error/$sce/icontext"
-  },
-  "error/$sce/iequirks": {
-    "name": "iequirks",
-    "area": "error",
-    "path": "error/$sce/iequirks"
-  },
-  "error/$sce/imatcher": {
-    "name": "imatcher",
-    "area": "error",
-    "path": "error/$sce/imatcher"
-  },
-  "error/$sce/insecurl": {
-    "name": "insecurl",
-    "area": "error",
-    "path": "error/$sce/insecurl"
-  },
-  "error/$sce/itype": {
-    "name": "itype",
-    "area": "error",
-    "path": "error/$sce/itype"
-  },
-  "error/$sce/iwcard": {
-    "name": "iwcard",
-    "area": "error",
-    "path": "error/$sce/iwcard"
-  },
-  "error/$sce/unsafe": {
-    "name": "unsafe",
-    "area": "error",
-    "path": "error/$sce/unsafe"
-  },
-  "error": {
-    "name": "Error Reference",
-    "area": "error",
-    "path": "error"
-  },
-  "error/jqLite/nosel": {
-    "name": "nosel",
-    "area": "error",
-    "path": "error/jqLite/nosel"
-  },
-  "error/jqLite/offargs": {
-    "name": "offargs",
-    "area": "error",
-    "path": "error/jqLite/offargs"
-  },
-  "error/jqLite/onargs": {
-    "name": "onargs",
-    "area": "error",
-    "path": "error/jqLite/onargs"
-  },
-  "error/ng/areq": {
-    "name": "areq",
-    "area": "error",
-    "path": "error/ng/areq"
-  },
-  "error/ng/badname": {
-    "name": "badname",
-    "area": "error",
-    "path": "error/ng/badname"
-  },
-  "error/ng/btstrpd": {
-    "name": "btstrpd",
-    "area": "error",
-    "path": "error/ng/btstrpd"
-  },
-  "error/ng/cpi": {
-    "name": "cpi",
-    "area": "error",
-    "path": "error/ng/cpi"
-  },
-  "error/ng/cpws": {
-    "name": "cpws",
-    "area": "error",
-    "path": "error/ng/cpws"
-  },
-  "error/ngModel/nonassign": {
-    "name": "nonassign",
-    "area": "error",
-    "path": "error/ngModel/nonassign"
-  },
-  "error/ngOptions/iexp": {
-    "name": "iexp",
-    "area": "error",
-    "path": "error/ngOptions/iexp"
-  },
-  "error/ngPattern/noregexp": {
-    "name": "noregexp",
-    "area": "error",
-    "path": "error/ngPattern/noregexp"
-  },
-  "error/ngRepeat/dupes": {
-    "name": "dupes",
-    "area": "error",
-    "path": "error/ngRepeat/dupes"
-  },
-  "error/ngRepeat/iexp": {
-    "name": "iexp",
-    "area": "error",
-    "path": "error/ngRepeat/iexp"
-  },
-  "error/ngRepeat/iidexp": {
-    "name": "iidexp",
-    "area": "error",
-    "path": "error/ngRepeat/iidexp"
-  },
-  "error/ngTransclude/orphan": {
-    "name": "orphan",
-    "area": "error",
-    "path": "error/ngTransclude/orphan"
-  },
-  "guide/$location": {
-    "name": "Using $location",
-    "area": "guide",
-    "path": "guide/$location"
-  },
-  "guide/animations": {
-    "name": "Animations",
-    "area": "guide",
-    "path": "guide/animations"
-  },
-  "guide/bootstrap": {
-    "name": "Bootstrap",
-    "area": "guide",
-    "path": "guide/bootstrap"
-  },
-  "guide/compiler": {
-    "name": "HTML Compiler",
-    "area": "guide",
-    "path": "guide/compiler"
-  },
-  "guide/concepts": {
-    "name": "Conceptual Overview",
-    "area": "guide",
-    "path": "guide/concepts"
-  },
-  "guide/controller": {
-    "name": "Controllers",
-    "area": "guide",
-    "path": "guide/controller"
-  },
-  "guide/css-styling": {
-    "name": "Working With CSS",
-    "area": "guide",
-    "path": "guide/css-styling"
-  },
-  "guide/databinding": {
-    "name": "Data Binding",
-    "area": "guide",
-    "path": "guide/databinding"
-  },
-  "guide/di": {
-    "name": "Dependency Injection",
-    "area": "guide",
-    "path": "guide/di"
-  },
-  "guide/directive": {
-    "name": "Directives",
-    "area": "guide",
-    "path": "guide/directive"
-  },
-  "guide/e2e-testing": {
-    "name": "E2E Testing",
-    "area": "guide",
-    "path": "guide/e2e-testing"
-  },
-  "guide/expression": {
-    "name": "Expressions",
-    "area": "guide",
-    "path": "guide/expression"
-  },
-  "guide/filter": {
-    "name": "Filters",
-    "area": "guide",
-    "path": "guide/filter"
-  },
-  "guide/forms": {
-    "name": "Forms",
-    "area": "guide",
-    "path": "guide/forms"
-  },
-  "guide/i18n": {
-    "name": "i18n and l10n",
-    "area": "guide",
-    "path": "guide/i18n"
-  },
-  "guide/ie": {
-    "name": "Internet Explorer Compatibility",
-    "area": "guide",
-    "path": "guide/ie"
-  },
-  "guide": {
-    "name": "Developer Guide",
-    "area": "guide",
-    "path": "guide"
-  },
-  "guide/introduction": {
-    "name": "Introduction",
-    "area": "guide",
-    "path": "guide/introduction"
-  },
-  "guide/migration": {
-    "name": "Migrating from 1.0 to 1.2",
-    "area": "guide",
-    "path": "guide/migration"
-  },
-  "guide/module": {
-    "name": "Modules",
-    "area": "guide",
-    "path": "guide/module"
-  },
-  "guide/providers": {
-    "name": "Providers",
-    "area": "guide",
-    "path": "guide/providers"
-  },
-  "guide/scope": {
-    "name": "Scopes",
-    "area": "guide",
-    "path": "guide/scope"
-  },
-  "guide/services": {
-    "name": "Services",
-    "area": "guide",
-    "path": "guide/services"
-  },
-  "guide/templates": {
-    "name": "Templates",
-    "area": "guide",
-    "path": "guide/templates"
-  },
-  "guide/unit-testing": {
-    "name": "Unit Testing",
-    "area": "guide",
-    "path": "guide/unit-testing"
-  },
-  "misc/contribute": {
-    "name": "Develop",
-    "area": "misc",
-    "path": "misc/contribute"
-  },
-  "misc/downloading": {
-    "name": "Downloading",
-    "area": "misc",
-    "path": "misc/downloading"
-  },
-  "misc/faq": {
-    "name": "FAQ",
-    "area": "misc",
-    "path": "misc/faq"
-  },
-  "misc": {
-    "name": "Miscellaneous",
-    "area": "misc",
-    "path": "misc"
-  },
-  "misc/started": {
-    "name": "Getting Started",
-    "area": "misc",
-    "path": "misc/started"
-  },
-  "tutorial": {
-    "name": "Tutorial",
-    "area": "tutorial",
-    "path": "tutorial"
-  },
-  "tutorial/step_00": {
-    "name": "0 - Bootstrapping",
-    "area": "tutorial",
-    "path": "tutorial/step_00"
-  },
-  "tutorial/step_01": {
-    "name": "1 - Static Template",
-    "area": "tutorial",
-    "path": "tutorial/step_01"
-  },
-  "tutorial/step_02": {
-    "name": "2 - Angular Templates",
-    "area": "tutorial",
-    "path": "tutorial/step_02"
-  },
-  "tutorial/step_03": {
-    "name": "3 - Filtering Repeaters",
-    "area": "tutorial",
-    "path": "tutorial/step_03"
-  },
-  "tutorial/step_04": {
-    "name": "4 - Two-way Data Binding",
-    "area": "tutorial",
-    "path": "tutorial/step_04"
-  },
-  "tutorial/step_05": {
-    "name": "5 - XHRs & Dependency Injection",
-    "area": "tutorial",
-    "path": "tutorial/step_05"
-  },
-  "tutorial/step_06": {
-    "name": "6 - Templating Links & Images",
-    "area": "tutorial",
-    "path": "tutorial/step_06"
-  },
-  "tutorial/step_07": {
-    "name": "7 - Routing & Multiple Views",
-    "area": "tutorial",
-    "path": "tutorial/step_07"
-  },
-  "tutorial/step_08": {
-    "name": "8 - More Templating",
-    "area": "tutorial",
-    "path": "tutorial/step_08"
-  },
-  "tutorial/step_09": {
-    "name": "9 - Filters",
-    "area": "tutorial",
-    "path": "tutorial/step_09"
-  },
-  "tutorial/step_10": {
-    "name": "10 - Event Handlers",
-    "area": "tutorial",
-    "path": "tutorial/step_10"
-  },
-  "tutorial/step_11": {
-    "name": "11 - REST and Custom Services",
-    "area": "tutorial",
-    "path": "tutorial/step_11"
-  },
-  "tutorial/step_12": {
-    "name": "12 - Applying Animations",
-    "area": "tutorial",
-    "path": "tutorial/step_12"
-  },
-  "tutorial/the_end": {
-    "name": "The End",
-    "area": "tutorial",
-    "path": "tutorial/the_end"
-  },
-  "examples/example-example": {
-    "path": "examples/example-example"
+  "app.js": {
+    "path": "app.js"
+  },
+  "examples/example-error-$rootScope-inprog": {
+    "path": "examples/example-error-$rootScope-inprog"
   },
   "undefined": {},
-  "script.js": {
-    "path": "script.js"
+  "fakeBrowser.js": {
+    "path": "fakeBrowser.js"
   },
-  "examples/example-example1": {
-    "path": "examples/example-example1"
-  },
-  "controller.js": {
-    "path": "controller.js"
+  "addressBar.js": {
+    "path": "addressBar.js"
   },
   "protractor.js": {
     "path": "protractor.js"
   },
-  "examples/example-multi-bootstrap": {
-    "path": "examples/example-multi-bootstrap"
+  "examples/example-location-html5-mode": {
+    "path": "examples/example-location-html5-mode"
+  },
+  "examples/example-location-hashbang-mode": {
+    "path": "examples/example-location-hashbang-mode"
+  },
+  "script.js": {
+    "path": "script.js"
+  },
+  "examples/example-example": {
+    "path": "examples/example-example"
+  },
+  "animations.css": {
+    "path": "animations.css"
+  },
+  "examples/example-example1": {
+    "path": "examples/example-example1"
   },
   "style.css": {
     "path": "style.css"
@@ -1464,20 +1484,56 @@ angular.module('pagesData', [])
   "examples/example-example3": {
     "path": "examples/example-example3"
   },
+  "examples/example-guide-concepts-1": {
+    "path": "examples/example-guide-concepts-1"
+  },
+  "invoice1.js": {
+    "path": "invoice1.js"
+  },
+  "examples/example-guide-concepts-2": {
+    "path": "examples/example-guide-concepts-2"
+  },
+  "finance2.js": {
+    "path": "finance2.js"
+  },
+  "invoice2.js": {
+    "path": "invoice2.js"
+  },
+  "examples/example-guide-concepts-21": {
+    "path": "examples/example-guide-concepts-21"
+  },
+  "invoice3.js": {
+    "path": "invoice3.js"
+  },
+  "finance3.js": {
+    "path": "finance3.js"
+  },
+  "examples/example-guide-concepts-3": {
+    "path": "examples/example-guide-concepts-3"
+  },
   "examples/example-example4": {
     "path": "examples/example-example4"
   },
   "examples/example-example5": {
     "path": "examples/example-example5"
   },
+  "app.css": {
+    "path": "app.css"
+  },
   "examples/example-example6": {
     "path": "examples/example-example6"
+  },
+  "protractorTest.js": {
+    "path": "protractorTest.js"
   },
   "examples/example-example7": {
     "path": "examples/example-example7"
   },
   "examples/example-example8": {
     "path": "examples/example-example8"
+  },
+  "my-customer.html": {
+    "path": "my-customer.html"
   },
   "examples/example-example9": {
     "path": "examples/example-example9"
@@ -1488,41 +1544,14 @@ angular.module('pagesData', [])
   "examples/example-example11": {
     "path": "examples/example-example11"
   },
-  "examples/example-text-input-directive": {
-    "path": "examples/example-text-input-directive"
-  },
-  "examples/example-number-input-directive": {
-    "path": "examples/example-number-input-directive"
-  },
-  "examples/example-url-input-directive": {
-    "path": "examples/example-url-input-directive"
-  },
-  "examples/example-email-input-directive": {
-    "path": "examples/example-email-input-directive"
-  },
-  "examples/example-radio-input-directive": {
-    "path": "examples/example-radio-input-directive"
-  },
-  "examples/example-checkbox-input-directive": {
-    "path": "examples/example-checkbox-input-directive"
-  },
-  "examples/example-input-directive": {
-    "path": "examples/example-input-directive"
-  },
-  "examples/example-NgModelController": {
-    "path": "examples/example-NgModelController"
+  "my-customer-iso.html": {
+    "path": "my-customer-iso.html"
   },
   "examples/example-example12": {
     "path": "examples/example-example12"
   },
-  "examples/example-ngChange-directive": {
-    "path": "examples/example-ngChange-directive"
-  },
-  "examples/example-ngList-directive": {
-    "path": "examples/example-ngList-directive"
-  },
-  "examples/example-ngValue-directive": {
-    "path": "examples/example-ngValue-directive"
+  "my-customer-plus-vojta.html": {
+    "path": "my-customer-plus-vojta.html"
   },
   "examples/example-example13": {
     "path": "examples/example-example13"
@@ -1530,11 +1559,17 @@ angular.module('pagesData', [])
   "examples/example-example14": {
     "path": "examples/example-example14"
   },
+  "my-dialog.html": {
+    "path": "my-dialog.html"
+  },
   "examples/example-example15": {
     "path": "examples/example-example15"
   },
   "examples/example-example16": {
     "path": "examples/example-example16"
+  },
+  "my-dialog-close.html": {
+    "path": "my-dialog-close.html"
   },
   "examples/example-example17": {
     "path": "examples/example-example17"
@@ -1542,20 +1577,17 @@ angular.module('pagesData', [])
   "examples/example-example18": {
     "path": "examples/example-example18"
   },
+  "my-tabs.html": {
+    "path": "my-tabs.html"
+  },
+  "my-pane.html": {
+    "path": "my-pane.html"
+  },
   "examples/example-example19": {
     "path": "examples/example-example19"
   },
   "examples/example-example20": {
     "path": "examples/example-example20"
-  },
-  "app.js": {
-    "path": "app.js"
-  },
-  "examples/example-ngControllerAs": {
-    "path": "examples/example-ngControllerAs"
-  },
-  "examples/example-ngController": {
-    "path": "examples/example-ngController"
   },
   "examples/example-example21": {
     "path": "examples/example-example21"
@@ -1602,17 +1634,8 @@ angular.module('pagesData', [])
   "examples/example-example35": {
     "path": "examples/example-example35"
   },
-  "animations.css": {
-    "path": "animations.css"
-  },
   "examples/example-example36": {
     "path": "examples/example-example36"
-  },
-  "template1.html": {
-    "path": "template1.html"
-  },
-  "template2.html": {
-    "path": "template2.html"
   },
   "examples/example-example37": {
     "path": "examples/example-example37"
@@ -1623,14 +1646,17 @@ angular.module('pagesData', [])
   "examples/example-example39": {
     "path": "examples/example-example39"
   },
+  "controller.js": {
+    "path": "controller.js"
+  },
+  "examples/example-multi-bootstrap": {
+    "path": "examples/example-multi-bootstrap"
+  },
   "examples/example-example40": {
     "path": "examples/example-example40"
   },
   "examples/example-example41": {
     "path": "examples/example-example41"
-  },
-  "glyphicons.css": {
-    "path": "glyphicons.css"
   },
   "examples/example-example42": {
     "path": "examples/example-example42"
@@ -1656,11 +1682,41 @@ angular.module('pagesData', [])
   "examples/example-example49": {
     "path": "examples/example-example49"
   },
-  "examples/example-$filter": {
-    "path": "examples/example-$filter"
+  "examples/example-text-input-directive": {
+    "path": "examples/example-text-input-directive"
+  },
+  "examples/example-number-input-directive": {
+    "path": "examples/example-number-input-directive"
+  },
+  "examples/example-url-input-directive": {
+    "path": "examples/example-url-input-directive"
+  },
+  "examples/example-email-input-directive": {
+    "path": "examples/example-email-input-directive"
+  },
+  "examples/example-radio-input-directive": {
+    "path": "examples/example-radio-input-directive"
+  },
+  "examples/example-checkbox-input-directive": {
+    "path": "examples/example-checkbox-input-directive"
+  },
+  "examples/example-input-directive": {
+    "path": "examples/example-input-directive"
+  },
+  "examples/example-NgModelController": {
+    "path": "examples/example-NgModelController"
   },
   "examples/example-example50": {
     "path": "examples/example-example50"
+  },
+  "examples/example-ngChange-directive": {
+    "path": "examples/example-ngChange-directive"
+  },
+  "examples/example-ngList-directive": {
+    "path": "examples/example-ngList-directive"
+  },
+  "examples/example-ngValue-directive": {
+    "path": "examples/example-ngValue-directive"
   },
   "examples/example-example51": {
     "path": "examples/example-example51"
@@ -1683,11 +1739,14 @@ angular.module('pagesData', [])
   "examples/example-example57": {
     "path": "examples/example-example57"
   },
-  "http-hello.html": {
-    "path": "http-hello.html"
-  },
   "examples/example-example58": {
     "path": "examples/example-example58"
+  },
+  "examples/example-ngControllerAs": {
+    "path": "examples/example-ngControllerAs"
+  },
+  "examples/example-ngController": {
+    "path": "examples/example-ngController"
   },
   "examples/example-example59": {
     "path": "examples/example-example59"
@@ -1698,26 +1757,11 @@ angular.module('pagesData', [])
   "examples/example-example61": {
     "path": "examples/example-example61"
   },
-  "test_data.json": {
-    "path": "test_data.json"
-  },
   "examples/example-example62": {
     "path": "examples/example-example62"
   },
   "examples/example-example63": {
     "path": "examples/example-example63"
-  },
-  "book.html": {
-    "path": "book.html"
-  },
-  "chapter.html": {
-    "path": "chapter.html"
-  },
-  "examples/example-ngView-directive": {
-    "path": "examples/example-ngView-directive"
-  },
-  "examples/example-$route-service": {
-    "path": "examples/example-$route-service"
   },
   "examples/example-example64": {
     "path": "examples/example-example64"
@@ -1734,21 +1778,6 @@ angular.module('pagesData', [])
   "examples/example-example68": {
     "path": "examples/example-example68"
   },
-  "examples/example-error-$rootScope-inprog": {
-    "path": "examples/example-error-$rootScope-inprog"
-  },
-  "fakeBrowser.js": {
-    "path": "fakeBrowser.js"
-  },
-  "addressBar.js": {
-    "path": "addressBar.js"
-  },
-  "examples/example-location-html5-mode": {
-    "path": "examples/example-location-html5-mode"
-  },
-  "examples/example-location-hashbang-mode": {
-    "path": "examples/example-location-hashbang-mode"
-  },
   "examples/example-example69": {
     "path": "examples/example-example69"
   },
@@ -1761,47 +1790,20 @@ angular.module('pagesData', [])
   "examples/example-example72": {
     "path": "examples/example-example72"
   },
-  "examples/example-guide-concepts-1": {
-    "path": "examples/example-guide-concepts-1"
-  },
-  "invoice1.js": {
-    "path": "invoice1.js"
-  },
-  "examples/example-guide-concepts-2": {
-    "path": "examples/example-guide-concepts-2"
-  },
-  "finance2.js": {
-    "path": "finance2.js"
-  },
-  "invoice2.js": {
-    "path": "invoice2.js"
-  },
-  "examples/example-guide-concepts-21": {
-    "path": "examples/example-guide-concepts-21"
-  },
-  "invoice3.js": {
-    "path": "invoice3.js"
-  },
-  "finance3.js": {
-    "path": "finance3.js"
-  },
-  "examples/example-guide-concepts-3": {
-    "path": "examples/example-guide-concepts-3"
-  },
   "examples/example-example73": {
     "path": "examples/example-example73"
   },
   "examples/example-example74": {
     "path": "examples/example-example74"
   },
-  "app.css": {
-    "path": "app.css"
+  "template1.html": {
+    "path": "template1.html"
+  },
+  "template2.html": {
+    "path": "template2.html"
   },
   "examples/example-example75": {
     "path": "examples/example-example75"
-  },
-  "protractorTest.js": {
-    "path": "protractorTest.js"
   },
   "examples/example-example76": {
     "path": "examples/example-example76"
@@ -1809,26 +1811,20 @@ angular.module('pagesData', [])
   "examples/example-example77": {
     "path": "examples/example-example77"
   },
-  "my-customer.html": {
-    "path": "my-customer.html"
-  },
   "examples/example-example78": {
     "path": "examples/example-example78"
   },
   "examples/example-example79": {
     "path": "examples/example-example79"
   },
+  "glyphicons.css": {
+    "path": "glyphicons.css"
+  },
   "examples/example-example80": {
     "path": "examples/example-example80"
   },
-  "my-customer-iso.html": {
-    "path": "my-customer-iso.html"
-  },
   "examples/example-example81": {
     "path": "examples/example-example81"
-  },
-  "my-customer-plus-vojta.html": {
-    "path": "my-customer-plus-vojta.html"
   },
   "examples/example-example82": {
     "path": "examples/example-example82"
@@ -1836,17 +1832,11 @@ angular.module('pagesData', [])
   "examples/example-example83": {
     "path": "examples/example-example83"
   },
-  "my-dialog.html": {
-    "path": "my-dialog.html"
-  },
   "examples/example-example84": {
     "path": "examples/example-example84"
   },
   "examples/example-example85": {
     "path": "examples/example-example85"
-  },
-  "my-dialog-close.html": {
-    "path": "my-dialog-close.html"
   },
   "examples/example-example86": {
     "path": "examples/example-example86"
@@ -1854,11 +1844,8 @@ angular.module('pagesData', [])
   "examples/example-example87": {
     "path": "examples/example-example87"
   },
-  "my-tabs.html": {
-    "path": "my-tabs.html"
-  },
-  "my-pane.html": {
-    "path": "my-pane.html"
+  "examples/example-$filter": {
+    "path": "examples/example-$filter"
   },
   "examples/example-example88": {
     "path": "examples/example-example88"
@@ -1884,6 +1871,9 @@ angular.module('pagesData', [])
   "examples/example-example95": {
     "path": "examples/example-example95"
   },
+  "http-hello.html": {
+    "path": "http-hello.html"
+  },
   "examples/example-example96": {
     "path": "examples/example-example96"
   },
@@ -1896,11 +1886,26 @@ angular.module('pagesData', [])
   "examples/example-example99": {
     "path": "examples/example-example99"
   },
+  "test_data.json": {
+    "path": "test_data.json"
+  },
   "examples/example-example100": {
     "path": "examples/example-example100"
   },
   "examples/example-example101": {
     "path": "examples/example-example101"
+  },
+  "book.html": {
+    "path": "book.html"
+  },
+  "chapter.html": {
+    "path": "chapter.html"
+  },
+  "examples/example-ngView-directive": {
+    "path": "examples/example-ngView-directive"
+  },
+  "examples/example-$route-service": {
+    "path": "examples/example-$route-service"
   },
   "examples/example-example102": {
     "path": "examples/example-example102"
@@ -2016,6 +2021,10 @@ angular.module('pagesData', [])
     "name": "ngTransclude",
     "area": "error",
     "path": "error/ngTransclude"
+  },
+  ".": {
+    "name": "production",
+    "path": "."
   },
   "api/ng/function": {
     "name": "function components in ng",

@@ -32,18 +32,18 @@ scope which defines the <code>username</code> property.</p>
 <code>$watch</code> allows the directives to be notified of property changes, which allows the directive to
 render the updated value to the DOM.</p>
 <p>Both controllers and directives have reference to the scope, but not to each other. This
-arrangement isolates the controller from the directive as well as from DOM. This is an important
+arrangement isolates the controller from the directive as well as from the DOM. This is an important
 point since it makes the controllers view agnostic, which greatly improves the testing story of
 the applications.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example102')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example33')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example102"
+      path="examples/example-example33"
       module="scopeExample">
 
   
@@ -62,7 +62,7 @@ the applications.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example102/index.html" name="example-example102"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example33/index.html" name="example-example33"></iframe>
   </div>
 </div>
 
@@ -118,12 +118,12 @@ a diagram depicting the scope boundaries.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example103')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example34')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example103"
+      path="examples/example-example34"
       module="scopeExample">
 
   
@@ -149,7 +149,7 @@ a diagram depicting the scope boundaries.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example103/index.html" name="example-example103"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example34/index.html" name="example-example34"></iframe>
   </div>
 </div>
 
@@ -185,12 +185,12 @@ variable.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example104')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example35')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example104"
+      path="examples/example-example35"
       module="eventExample">
 
   
@@ -209,7 +209,7 @@ variable.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example104/index.html" name="example-example104"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example35/index.html" name="example-example35"></iframe>
   </div>
 </div>
 
@@ -299,6 +299,14 @@ information.</p>
 the dirty checking function must be efficient. Care should be taken that the dirty checking
 function does not do any DOM access, as DOM access is orders of magnitude slower than property
 access on JavaScript object.</p>
+<h3 id="scope-watch-depths">Scope <code>$watch</code> Depths</h3>
+<p><img class="pull-right" style="padding-left: 3em; padding-bottom: 1em;" src="img/guide/concepts-scope-watch-strategies.png"></p>
+<p>Dirty checking can be done with three strategies: By reference, by collection contents, and by value. The strategies differ in the kinds of changes they detect, and in their performance characteristics.</p>
+<ul>
+<li>Watching <em>by reference</em> (<a href="api/ng/type/$rootScope.Scope#$watch">scope.$watch</a> <code>(watchExpression, listener)</code>) detects a change when the whole value returned by the watch expression switches to a new value. If the value is an array or an object, changes inside it are not detected. This is the most efficient stategy.</li>
+<li>Watching <em>collection contents</em> (<a href="api/ng/type/$rootScope.Scope#$watchCollection">scope.$watchCollection</a> <code>(watchExpression, listener)</code>) detects changes that occur inside an array or an object: When items are added, removed, or reordered. The detection is shallow - it does not reach into nested collections. Watching collection contents is more expensive than watching by reference, because copies of the collection contents need to be maintained. However, the strategy attempts to minimize the amount of copying required.</li>
+<li>Watching <em>by value</em> (<a href="api/ng/type/$rootScope.Scope#$watch">scope.$watch</a> <code>(watchExpression, listener, true)</code>) detects any change in an arbitrarily nested data structure. It is the most powerful change detection strategy, but also the most expensive. A full traversal of the nested data structure is needed on each digest, and a full copy of it needs to be held in memory.</li>
+</ul>
 <h2 id="integration-with-the-browser-event-loop">Integration with the browser event loop</h2>
 <p><img class="pull-right" style="padding-left: 3em; padding-bottom: 1em;" src="img/guide/concepts-runtime.png"></p>
 <p>The diagram and the example below describe how Angular interacts with the browser&#39;s event loop.</p>

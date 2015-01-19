@@ -1,31 +1,31 @@
 <div>
-    <form name="dbCfg" class="uk-form" ng-submit="updateConfig()">
+    <form name="dbcfg" class="uk-form" ng-submit="updateConfig()">
         <fieldset>
             <legend><h2>Blog Database Configuration</h2></legend>
             <div class="uk-form-row">
                 <input name="dburl"
-                       ng-class="{ 'ng-invalid.ng-dirty' : dbCfg.dburl.$invalid && !dbCfg.dburl.$pristine }"
-                       ng-model="dbCfg.dburl" class="uk-form-large uk-form-width-medium"
+                       ng-class="{ 'ng-invalid.ng-dirty' : dbcfg.dburl.$invalid && !dbcfg.dburl.$pristine }"
+                       ng-model="cfg.dburl" class="uk-form-large uk-form-width-medium"
                        type="text" ng-pattern="/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/"
                        placeholder="Enter DB Address" required>
                 <input name="dbport"
-                       ng-class="{ 'ng-invalid.ng-dirty' : dbCfg.dbport.$invalid && !dbCfg.dbport.$pristine }"
-                       ng-model="dbCfg.dbport" class="uk-form-large uk-form-width-small"
+                       ng-class="{ 'ng-invalid.ng-dirty' : dbcfg.dbport.$invalid && !dbcfg.dbport.$pristine }"
+                       ng-model="cfg.dbport" class="uk-form-large uk-form-width-small"
                        type="text"
                        placeholder="Enter DB Port" required>
             </div>
             <div class="uk-form-row">
                 <input name="dbpass"
-                       ng-class="{ 'ng-invalid.ng-dirty' : dbCfg.dbpass.$invalid && !dbCfg.dbpass.$pristine }"
-                       ng-model="dbCfg.dbpass" class="uk-form-large uk-form-width-medium"
+                       ng-class="{ 'ng-invalid.ng-dirty' : dbcfg.dbpass.$invalid && !dbcfg.dbpass.$pristine }"
+                       ng-model="cfg.dbpass" class="uk-form-large uk-form-width-medium"
                        type="password"
                        placeholder="Enter DB Password" required>
             </div>
             <div class="uk-form-row">
-                <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-6 uk-hidden-small" ng-disabled="dbCfg.$invalid" type="submit">Update
+                <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-6 uk-hidden-small" ng-disabled="dbcfg.$invalid" type="submit">Update
                     Configuration
                 </button>
-                <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-1 uk-hidden-large uk-hidden-medium" ng-disabled="dbCfg.$invalid"
+                <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-1 uk-hidden-large uk-hidden-medium" ng-disabled="dbcfg.$invalid"
                         type="submit">Update Configuration
                 </button>
             </div>

@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/compile.js?message=docs($compile)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/compile.js?message=docs($compile)%3A%20describe%20your%20change...#L21' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/compile.js#L21' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.28/src/ng/compile.js#L21' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -221,9 +221,13 @@ transclusion function which is pre-bound to the correct scope. In a typical setu
 creates an <code>isolate</code> scope, but the transclusion is not a child, but a sibling of the <code>isolate</code>
 scope. This makes it possible for the widget to have private state, and the transclusion to
 be bound to the parent (pre-<code>isolate</code>) scope.</p>
+<p>There are two kinds of transclusion depending upon whether you want to transclude just the contents of the
+directive&#39;s element or the entire element:</p>
 <ul>
-<li><code>true</code> - transclude the content of the directive.</li>
-<li><code>&#39;element&#39;</code> - transclude the whole element including any directives defined at lower priority.</li>
+<li><code>true</code> - transclude the content (i.e. the child nodes) of the directive&#39;s element.</li>
+<li><code>&#39;element&#39;</code> - transclude the whole of the directive&#39;s element including any directives on this
+element that defined at a lower priority than this directive. When used, the <code>template</code>
+property is ignored.</li>
 </ul>
 <div class="alert alert-warning">
 <strong>Note:</strong> When testing an element transclude directive you must not place the directive at the root of the
@@ -355,12 +359,12 @@ to illustrate how <code>$compile</code> works.
 <p> 
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example4')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example42')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example4"
+      path="examples/example-example42"
       module="compileExample">
 
   
@@ -379,7 +383,7 @@ to illustrate how <code>$compile</code> works.
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example4/index.html" name="example-example4"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example42/index.html" name="example-example42"></iframe>
   </div>
 </div>
 

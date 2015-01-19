@@ -5,10 +5,7 @@ describe("", function() {
     browser.get("examples/example-example20/index-jquery.html");
   });
   
-  it('should remove the template directive and css class', function() {
-    expect($('#template1').getAttribute('ng-cloak')).
-      toBeNull();
-    expect($('#template2').getAttribute('ng-cloak')).
-      toBeNull();
+  it('should calculate expression in binding', function() {
+    expect(element(by.binding('1+2')).getText()).toEqual('1+2=3');
   });
 });

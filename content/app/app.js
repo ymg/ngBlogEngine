@@ -1,7 +1,7 @@
 'use strict';
 
 
-var ngBlogApp = angular.module('ngMicroBlog', ['angular-loading-bar', 'infinite-scroll', 'ngSanitize', 'ngAnimate', 'ngCookies', 'ngRoute'])
+var ngBlogApp = angular.module('ngMicroBlog', ['infinite-scroll', 'ngSanitize', 'angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngRoute', 'validation.match'])
     .config(function ($httpProvider, $routeProvider, $locationProvider) {
 
         $routeProvider.when('/login', {
@@ -58,7 +58,10 @@ var ngBlogApp = angular.module('ngMicroBlog', ['angular-loading-bar', 'infinite-
         }).otherwise({redirectTo: '/blog'});
 
         $httpProvider.defaults.xsrfHeaderName = 'X-Csrftoken';
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
 
         //$locationProvider.hashPrefix('!');
 
@@ -67,7 +70,19 @@ var ngBlogApp = angular.module('ngMicroBlog', ['angular-loading-bar', 'infinite-
         $http.defaults.headers.common['X-Csrftoken'] = atob($cookies._xsrf.split('|')[0]);
 
         $rootScope.loginStatus = false;
-        authService.authCheck();
+
+        authService.authCheck().then(function (status) {
+            if (status === 200) {
+                authService.userIsAuthenticated = true;
+            } else {
+                authService.userIsAuthenticated = false;
+            }
+            $rootScope.loginStatus = authService.userIsAuthenticated;
+
+        }, function (status) {
+            authService.userIsAuthenticated = false;
+            $rootScope.loginStatus = authService.userIsAuthenticated;
+        });
 
         $rootScope.highlightCode = function () {
             angular.element(document).ready(function () {
@@ -75,6 +90,10 @@ var ngBlogApp = angular.module('ngMicroBlog', ['angular-loading-bar', 'infinite-
                     hljs.highlightBlock(block);
                 });
             });
+        };
+
+        $rootScope.InitMarkDownEditor = function () {
+            mdarea($, $.UIkit);
         };
 
         $rootScope.$on('$routeChangeStart', function (event, next, current) {

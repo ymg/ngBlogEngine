@@ -5,13 +5,13 @@
   <title>Example - example-example72-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-  <script src="script.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="drag">
-    <span draggable>Drag ME</span>
+<body ng-app="">
+   <input ng-cut="cut=true" ng-init="cut=false; value='cut me'" ng-model="value">
+ cut: {{cut}}
 </body>
 </html>

@@ -1,4 +1,8 @@
-  angular.module('debounceExample', [])
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.user = {};
+  angular.module('scopeExample', [])
+    .controller('MyController', ['$scope', function($scope) {
+      $scope.username = 'World';
+
+      $scope.sayHello = function() {
+        $scope.greeting = 'Hello ' + $scope.username + '!';
+      };
     }]);

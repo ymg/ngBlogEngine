@@ -19,25 +19,21 @@ ngBlogApp.service('authService', function ($rootScope, $log, $http, $q) {
             });
     };
     this.authCheck = function () {
-        $http({method: 'PUT', url: '/api/login' }).
+        var deferred = $q.defer();
+        $http({method: 'PUT', url: '/api/login'}).
             success(function (data, status, headers, config) {
-                if (status === 200) {
-                    userIsAuthenticated = true;
-                } else {
-                    userIsAuthenticated = false;
-                }
-                $rootScope.loginStatus = userIsAuthenticated;
+                deferred.resolve(status);
             }).
             error(function (data, status, headers, config) {
-                userIsAuthenticated = false;
-                $rootScope.loginStatus = userIsAuthenticated;
+                deferred.reject(status);
             });
+        return deferred.promise;
     };
     this.isLoggedIn = function () {
         return userIsAuthenticated;
     };
     this.logout = function (cb) {
-        $http({ method: 'DELETE', url: '/api/logout' }).
+        $http({method: 'DELETE', url: '/api/logout'}).
             success(function (data, status, headers, config) {
                 userIsAuthenticated = false;
                 cb(status)
@@ -47,4 +43,15 @@ ngBlogApp.service('authService', function ($rootScope, $log, $http, $q) {
                 cb(status)
             });
     };
+    this.updateCredentials = function(dat) {
+        var deferred = $q.defer();
+        $http({method: 'PUT', url: '/api/user/update', data: dat}).
+            success(function (data, status, headers, config) {
+                deferred.resolve(status);
+            }).
+            error(function (data, status, headers, config) {
+                deferred.reject(status);
+            });
+        return deferred.promise;
+   };
 });

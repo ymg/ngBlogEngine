@@ -21,7 +21,7 @@ func TestInitAuthDao(t *testing.T) {
 
 }
 
-func TestEditAdminDetails(t *testing.T) {
+func TestEditAdminPassword(t *testing.T) {
 
 	cfg, _ = InitDbConfig()
 
@@ -35,6 +35,14 @@ func TestEditAdminDetails(t *testing.T) {
 		t.Error(err.Error())
 	}
 
-	dao.EditAdminDetails("adasd")
+	dao.EditAdminPassword(struct {
+		NewPassword     string
+		CurrentPassword string
+	}{
+		"admin",
+		"123",
+	})
+
+	//dao.EditAdminUsername("admin", "epic!")
 
 }

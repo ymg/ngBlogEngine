@@ -1,12 +1,9 @@
-  var thumbsUp = element(by.css('span.glyphicon-thumbs-up'));
-  var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
-
-  it('should check ng-show / ng-hide', function() {
-    expect(thumbsUp.isDisplayed()).toBeFalsy();
-    expect(thumbsDown.isDisplayed()).toBeTruthy();
-
-    element(by.model('checked')).click();
-
-    expect(thumbsUp.isDisplayed()).toBeTruthy();
-    expect(thumbsDown.isDisplayed()).toBeFalsy();
+  it('should auto compile', function() {
+    var textarea = $('textarea');
+    var output = $('div[compile]');
+    // The initial state reads 'Hello Angular'.
+    expect(output.getText()).toBe('Hello Angular');
+    textarea.clear();
+    textarea.sendKeys('{{name}}!');
+    expect(output.getText()).toBe('Angular!');
   });

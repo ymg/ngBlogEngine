@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example44-debug</title>
-  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.js"></script>
@@ -12,11 +11,7 @@
   
 </head>
 <body ng-app="">
-     <input type="button" value="set color" ng-click="myStyle={color:'red'}">
-   <input type="button" value="set background" ng-click="myStyle={'background-color':'blue'}">
-   <input type="button" value="clear" ng-click="myStyle={}">
-   <br/>
-   <span ng-style="myStyle">Sample Text</span>
-   <pre>myStyle={{myStyle}}</pre>
+    Click me to toggle: <input type="checkbox" ng-model="checked"><br/>
+  <button ng-model="button" ng-disabled="checked">Button</button>
 </body>
 </html>

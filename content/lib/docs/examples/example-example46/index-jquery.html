@@ -11,29 +11,8 @@
 
   
 </head>
-<body ng-app="transcludeExample">
-    <script>
-    angular.module('transcludeExample', [])
-     .directive('pane', function(){
-        return {
-          restrict: 'E',
-          transclude: true,
-          scope: { title:'@' },
-          template: '<div style="border: 1px solid black;">' +
-                      '<div style="background-color: gray">{{title}}</div>' +
-                      '<div ng-transclude></div>' +
-                    '</div>'
-        };
-    })
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.title = 'Lorem Ipsum';
-      $scope.text = 'Neque porro quisquam est qui dolorem ipsum quia dolor...';
-    }]);
-  </script>
-  <div ng-controller="ExampleController">
-    <input ng-model="title"><br>
-    <textarea ng-model="text"></textarea> <br/>
-    <pane title="{{title}}">{{text}}</pane>
-  </div>
+<body ng-app="">
+    Check me to make text readonly: <input type="checkbox" ng-model="checked"><br/>
+  <input type="text" ng-readonly="checked" value="I'm Angular"/>
 </body>
 </html>

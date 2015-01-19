@@ -6,14 +6,16 @@
   
 
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="docsTransclusionExample">
-    <div ng-controller="Controller">
-    <my-dialog>Check out the contents, {{name}}!</my-dialog>
-  </div>
+<body ng-app="">
+    <script type="text/ng-template" id="/tpl.html">
+    Content of the template.
+  </script>
+
+  <a ng-click="currentTpl='/tpl.html'" id="tpl-link">Load inlined template</a>
+  <div id="tpl-content" ng-include src="currentTpl"></div>
 </body>
 </html>

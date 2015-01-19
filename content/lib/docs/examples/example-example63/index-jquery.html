@@ -11,19 +11,10 @@
 
   
 </head>
-<body ng-app="windowExample">
-    <script>
-    angular.module('windowExample', [])
-      .controller('ExampleController', ['$scope', '$window', function ($scope, $window) {
-        $scope.greeting = 'Hello, World!';
-        $scope.doGreeting = function(greeting) {
-          $window.alert(greeting);
-        };
-      }]);
-  </script>
-  <div ng-controller="ExampleController">
-    <input type="text" ng-model="greeting" />
-    <button ng-click="doGreeting(greeting)">ALERT</button>
-  </div>
+<body ng-app="">
+   <button ng-mouseover="count = count + 1" ng-init="count=0">
+   Increment (when mouse is over)
+ </button>
+ count: {{count}}
 </body>
 </html>

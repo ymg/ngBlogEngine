@@ -5,13 +5,9 @@ describe("", function() {
     browser.get("examples/example-example48/index.html");
   });
   
-   it('should check ng-options', function() {
-     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('red');
-     element.all(by.model('myColor')).first().click();
-     element.all(by.css('select[ng-model="myColor"] option')).first().click();
-     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('black');
-     element(by.css('.nullable select[ng-model="myColor"]')).click();
-     element.all(by.css('.nullable select[ng-model="myColor"] option')).first().click();
-     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('null');
-   });
+  it('should toggle open', function() {
+    expect(element(by.id('details')).getAttribute('open')).toBeFalsy();
+    element(by.model('open')).click();
+    expect(element(by.id('details')).getAttribute('open')).toBeTruthy();
+  });
 });

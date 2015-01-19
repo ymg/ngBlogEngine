@@ -9,13 +9,10 @@
                ng-model="postUpdateForm.title" class="uk-margin-bottom uk-form-large uk-form-width-large"
                type="text"
                placeholder="Enter Title" required>
-        <textarea id="editor" name="markdown" ng-model="postUpdateForm.markdown"
-                  data-uk-htmleditor="{markdown:true, mode:'tab'}"></textarea>
-        <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-6 uk-hidden-small"
-                ng-disabled="postform.$invalid" type="submit">Save Changes
+        <textarea id="editor" name="markdown" ng-model="postUpdateForm.markdown" data-uk-htmleditor="{mode:'tab', markdown:true}"></textarea>
+        <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-6 uk-hidden-small" ng-disabled="postform.$invalid" type="submit">Save Changes
         </button>
-        <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-1 uk-hidden-large uk-hidden-medium"
-                ng-disabled="postform.$invalid" type="submit">Save Changes
+        <button class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-1 uk-hidden-large uk-hidden-medium" ng-disabled="postform.$invalid" type="submit">Save Changes
         </button>
     </form>
 </div>

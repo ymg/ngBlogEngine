@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/filter/orderBy.js?message=docs(orderBy)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/filter/orderBy.js?message=docs(orderBy)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/filter/orderBy.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.28/src/ng/filter/orderBy.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -79,7 +79,7 @@ correctly, make sure they are actually being saved as numbers and not strings.</
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-function">function(*)</a><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-array">Array.&lt;(function(*)|string)&gt;</a>
+        <a href="" class="label type-hint type-hint-function">function(*)</a><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-array">Array.&lt;(function(*)|string)&gt;=</a>
       </td>
       <td>
         <p>A predicate to be
@@ -94,9 +94,12 @@ correctly, make sure they are actually being saved as numbers and not strings.</
 is interpreted as a property name to be used in comparisons (for example <code>&quot;special name&quot;</code>
 to sort object by the value of their <code>special name</code> property). An expression can be
 optionally prefixed with <code>+</code> or <code>-</code> to control ascending or descending sort order
-(for example, <code>+name</code> or <code>-name</code>).</li>
-<li><code>Array</code>: An array of function or string predicates. The first predicate in the array
-is used for sorting, but when two items are equivalent, the next predicate is used.</li>
+(for example, <code>+name</code> or <code>-name</code>). If no property is provided, (e.g. <code>&#39;+&#39;</code>) then the array
+element itself is used to compare where sorting.</li>
+<li><p><code>Array</code>: An array of function or string predicates. The first predicate in the array
+is used for sorting, but when two items are equivalent, the next predicate is used.</p>
+<p>If the predicate is missing or empty then it defaults to <code>&#39;+&#39;</code>.</p>
+</li>
 </ul>
 
         
@@ -138,12 +141,12 @@ is used for sorting, but when two items are equivalent, the next predicate is us
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example56')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example94')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example56"
+      path="examples/example-example94"
       module="orderByExample">
 
   
@@ -155,7 +158,7 @@ is used for sorting, but when two items are equivalent, the next predicate is us
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example56/index.html" name="example-example56"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example94/index.html" name="example-example94"></iframe>
   </div>
 </div>
 
@@ -168,12 +171,12 @@ desired parameters.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example57')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example95')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example57"
+      path="examples/example-example95"
       module="orderByExample">
 
   
@@ -192,7 +195,7 @@ desired parameters.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example57/index.html" name="example-example57"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example95/index.html" name="example-example95"></iframe>
   </div>
 </div>
 

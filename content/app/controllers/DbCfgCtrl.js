@@ -5,17 +5,23 @@ ngBlogApp.controller('DbCfgCtrl', function ($scope, $window, $location, $log, bl
 
     $window.document.title = "Blog Configuration";
 
-    $scope.dbCfg = {};
+    $scope.cfg = {};
 
     $scope.updateConfig = function () {
-        if ($scope.dbCfg.$valid) {
+        if ($scope.dbcfg.$valid) {
+            blogConfigService.updateDbConfig(this.dbcfg).then(function (status) {
 
+            }, function (status) {
+
+            });
+
+            $scope.cfg = {};
         }
     };
 
     blogConfigService.fetchDbConfig()
         .then(function (d) {
-            $scope.dbCfg = d;
+            $scope.cfg = d;
         }, function (status) {
             $log.error(status);
         });

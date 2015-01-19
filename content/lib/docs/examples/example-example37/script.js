@@ -1,7 +1,16 @@
- angular.module('includeExample', ['ngAnimate'])
-   .controller('ExampleController', ['$scope', function($scope) {
-     $scope.templates =
-       [ { name: 'template1.html', url: 'template1.html'},
-         { name: 'template2.html', url: 'template2.html'} ];
-     $scope.template = $scope.templates[0];
-   }]);
+  angular.module('myServiceModuleDI', []).
+    factory('notify', function($window) {
+      var msgs = [];
+      return function(msg) {
+        msgs.push(msg);
+        if (msgs.length == 3) {
+          $window.alert(msgs.join("\n"));
+          msgs = [];
+        }
+      };
+    }).
+    controller('MyController', function($scope, notify) {
+      $scope.callNotify = function(msg) {
+        notify(msg);
+      };
+    });

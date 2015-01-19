@@ -1,16 +1,8 @@
-angular.module('myServiceModuleDI', []).
-    factory('notify', function ($window) {
-        var msgs = [];
-        return function (msg) {
-            msgs.push(msg);
-            if (msgs.length == 3) {
-                $window.alert(msgs.join("\n"));
-                msgs = [];
-            }
-        };
-    }).
-    controller('MyController', function ($scope, notify) {
-        $scope.callNotify = function (msg) {
-            notify(msg);
-        };
-    });
+(function(angular) {
+  'use strict';
+angular.module('logExample', [])
+  .controller('LogController', ['$scope', '$log', function($scope, $log) {
+    $scope.$log = $log;
+    $scope.message = 'Hello World!';
+  }]);
+})(window.angular);

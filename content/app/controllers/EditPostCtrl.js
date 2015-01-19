@@ -4,7 +4,7 @@
 ngBlogApp.controller('EditPostCtrl', function ($location, $scope, $q, $log, $window, $routeParams, postService) {
     $window.document.title = 'Edit Post';
 
-    mdarea(jQuery, jQuery.UIkit);
+    $scope.InitMarkDownEditor();
 
     $scope.postUpdateForm = {};
 
@@ -31,7 +31,7 @@ ngBlogApp.controller('EditPostCtrl', function ($location, $scope, $q, $log, $win
 
             postService.updatePost(this.postUpdateForm).then(function (status) {
                     if (status === 200) {
-                        $scope.postUpdateForm = {}
+                        $scope.postUpdateForm = {};
                         markdownEditor.setValue('');
                         $scope.postform.$setPristine();
                         $location.path('/blog/' + $routeParams.postId);

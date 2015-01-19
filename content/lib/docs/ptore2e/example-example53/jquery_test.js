@@ -5,14 +5,8 @@ describe("", function() {
     browser.get("examples/example-example53/index-jquery.html");
   });
   
-  it('should format date', function() {
-    expect(element(by.binding("1288323623006 | date:'medium'")).getText()).
-       toMatch(/Oct 2\d, 2010 \d{1,2}:\d{2}:\d{2} (AM|PM)/);
-    expect(element(by.binding("1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'")).getText()).
-       toMatch(/2010\-10\-2\d \d{2}:\d{2}:\d{2} (\-|\+)?\d{4}/);
-    expect(element(by.binding("'1288323623006' | date:'MM/dd/yyyy @ h:mma'")).getText()).
-       toMatch(/10\/2\d\/2010 @ \d{1,2}:\d{2}(AM|PM)/);
-    expect(element(by.binding("'1288323623006' | date:\"MM/dd/yyyy 'at' h:mma\"")).getText()).
-       toMatch(/10\/2\d\/2010 at \d{1,2}:\d{2}(AM|PM)/);
+  it('should check ng-bind-html', function() {
+    expect(element(by.binding('myHTML')).getText()).toBe(
+        'I am an HTMLstring with links! and other stuff');
   });
 });

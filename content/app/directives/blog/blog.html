@@ -12,7 +12,7 @@
                 <div class="uk-dropdown uk-dropdown-small">
                     <ul class="uk-nav uk-nav-dropdown">
                         <li><a href="/edit/{{ post.Id }}"><i class="uk-icon-edit"></i> Edit</a></li>
-                        <li><a ng-click="modal(post.Id)"><i class="uk-icon-trash-o"></i> Delete</a></li>
+                        <li><a ng-click="modal(post.Id).show()"><i class="uk-icon-trash-o"></i> Delete</a></li>
                     </ul>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <h3 class="uk-text-center uk-width-1-1 uk-margin-bottom">Are you sure you want to delete this?</h3>
 
                     <div class="uk-width-1-2"><a ng-click="delete(post.Id)" class="uk-button uk-button-large uk-button-danger uk-float-right">Delete</a></div>
-                    <div class="uk-width-1-2"><a ng-click="modal.hide()" class="uk-button uk-button-large uk-float-left">Cancel</a></div>
+                    <div class="uk-width-1-2"><a ng-click="modal(post.Id).hide()" class="uk-button uk-button-large uk-float-left">Cancel</a></div>
                 </div>
             </div>
         </div>

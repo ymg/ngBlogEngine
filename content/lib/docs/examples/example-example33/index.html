@@ -6,12 +6,18 @@
   
 
   <script src="../../../angular.min.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-   <input ng-copy="copied=true" ng-init="copied=false; value='copy me'" ng-model="value">
- copied: {{copied}}
+<body ng-app="scopeExample">
+    <div ng-controller="MyController">
+    Your name:
+      <input type="text" ng-model="username">
+      <button ng-click='sayHello()'>greet</button>
+    <hr>
+    {{greeting}}
+  </div>
 </body>
 </html>

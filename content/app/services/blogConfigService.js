@@ -27,11 +27,11 @@ ngBlogApp.service('blogConfigService', function ($log, $http, $q) {
             });
         return deferred.promise;
     };
-    this.updateDbConfig = function () {
+    this.updateDbConfig = function (d) {
         var deferred = $q.defer();
-        $http({method: 'PUT', url: '/api/dbconfig'}).
+        $http({method: 'PUT', url: '/api/dbconfig', data: d}).
             success(function (data, status, headers, config) {
-                deferred.resolve(data);
+                deferred.resolve(status);
             }).
             error(function (data, status, headers, config) {
                 deferred.reject(status);

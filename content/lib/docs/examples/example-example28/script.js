@@ -1,15 +1,18 @@
-  angular.module('myStatefulFilterApp', [])
-    .filter('decorate', ['decoration', function(decoration) {
+  angular.module('formExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.master = {};
 
-      function decorateFilter(input) {
-        return decoration.symbol + input + decoration.symbol;
-      }
-      decorateFilter.$stateful = true;
+      $scope.update = function(user) {
+        $scope.master = angular.copy(user);
+      };
 
-      return decorateFilter;
-    }])
-    .controller('MyController', ['$scope', 'decoration', function($scope, decoration) {
-      $scope.greeting = 'hello';
-      $scope.decoration = decoration;
-    }])
-    .value('decoration', {symbol: '*'});
+      $scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+      };
+
+      $scope.isUnchanged = function(user) {
+        return angular.equals(user, $scope.master);
+      };
+
+      $scope.reset();
+    }]);

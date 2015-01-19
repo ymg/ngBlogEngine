@@ -184,7 +184,10 @@ facilitate the browser URL change and history management.</p>
 </table>
 
 <h2 id="hashbang-mode-default-mode-">Hashbang mode (default mode)</h2>
-<p>In this mode, <code>$location</code> uses Hashbang URLs in all browsers.</p>
+<p>In this mode, <code>$location</code> uses Hashbang URLs in all browsers.
+Angular also does not intercept and rewrite links in this mode. I.e. links work
+as expected and also perform full page reloads when other parts of the url
+than the hash fragment was changed.</p>
 <h3 id="example">Example</h3>
 <pre><code class="lang-js">it(&#39;should show example&#39;, inject(
 function($locationProvider) {
@@ -219,6 +222,8 @@ having to worry about whether the browser displaying your app supports the histo
 <li>Opening a regular URL in a legacy browser -&gt; redirects to a hashbang URL</li>
 <li>Opening hashbang URL in a modern browser -&gt; rewrites to a regular URL</li>
 </ul>
+<p>Note that in this mode, Angular intercepts all links (subject to the &quot;Html link rewriting&quot; rules below)
+and updates the url in a way that never performs a full page reload.</p>
 <h3 id="example">Example</h3>
 <pre><code class="lang-js">it(&#39;should show example&#39;, inject(
 function($locationProvider) {
@@ -261,8 +266,8 @@ path and search. If the history API is not supported by a browser, <code>$locati
 URL. This frees you from having to worry about whether the browser viewing your app supports the
 history API  or not; the <code>$location</code> service makes this transparent to you.</p>
 <h3 id="html-link-rewriting">Html link rewriting</h3>
-<p>When you use HTML5 history API mode, you will need different links in different browsers, but all you
-have to do is specify regular URL links, such as: <code>&lt;a href=&quot;/some?foo=bar&quot;&gt;link&lt;/a&gt;</code></p>
+<p>When you use HTML5 history API mode, you will not need special hashbang links. All you have to do
+is specify regular URL links, such as: <code>&lt;a href=&quot;/some?foo=bar&quot;&gt;link&lt;/a&gt;</code></p>
 <p>When a user clicks on this link,</p>
 <ul>
 <li>In a legacy browser, the URL changes to <code>/index.html#!/some?foo=bar</code></li>
@@ -275,15 +280,9 @@ reload to the original link.</p>
 Example: <code>&lt;a href=&quot;/ext/link?a=b&quot; target=&quot;_self&quot;&gt;link&lt;/a&gt;</code></li>
 <li>Absolute links that go to a different domain<br>
 Example: <code>&lt;a href=&quot;http://angularjs.org/&quot;&gt;link&lt;/a&gt;</code></li>
-<li>Links starting with &#39;/&#39; that lead to a different base path when base is defined<br>
+<li>Links starting with &#39;/&#39; that lead to a different base path<br>
 Example: <code>&lt;a href=&quot;/not-my-base/link&quot;&gt;link&lt;/a&gt;</code></li>
 </ul>
-<p>When running Angular in the root of a domain, along side perhaps a normal application in the same
-directory, the &quot;otherwise&quot; route handler will try to handle all the URLs, including ones that map
-to static files.</p>
-<p>To prevent this, you can set your base href for the app to <code>&lt;base href=&quot;.&quot;&gt;</code> and then prefix links
-to URLs that should be handled with <code>.</code>. Now, links to locations, which are not to be routed by Angular,
-are not prefixed with <code>.</code> and will not be intercepted by the <code>otherwise</code> rule in your <code>$routeProvider</code>.</p>
 <h3 id="server-side">Server side</h3>
 <p>Using this mode requires URL rewriting on server side, basically you have to rewrite all your links
 to entry point of your application (e.g. index.html)</p>
@@ -551,12 +550,12 @@ which push $location updates in both directions. For example:
 
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example69')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example69"
+      path="examples/example-example"
       module="locationExample">
 
   
@@ -575,7 +574,7 @@ which push $location updates in both directions. For example:
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example69/index.html" name="example-example69"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example/index.html" name="example-example"></iframe>
   </div>
 </div>
 

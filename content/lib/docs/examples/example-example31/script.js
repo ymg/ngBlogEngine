@@ -1,18 +1,10 @@
-  angular.module('formExample', [])
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.master = {};
+  // declare a module
+  var myAppModule = angular.module('myApp', []);
 
-      $scope.update = function(user) {
-        $scope.master = angular.copy(user);
-      };
-
-      $scope.reset = function() {
-        $scope.user = angular.copy($scope.master);
-      };
-
-      $scope.isUnchanged = function(user) {
-        return angular.equals(user, $scope.master);
-      };
-
-      $scope.reset();
-    }]);
+  // configure the module.
+  // in this example we will create a greeting filter
+  myAppModule.filter('greet', function() {
+   return function(name) {
+      return 'Hello, ' + name + '!';
+    };
+  });

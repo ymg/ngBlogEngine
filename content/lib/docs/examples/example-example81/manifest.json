@@ -2,7 +2,8 @@
   "name": "example-example81",
   "files": [
     "index-production.html",
-    "script.js",
-    "my-customer-iso.html"
+    "glyphicons.css",
+    "animations.css",
+    "protractor.js"
   ]
 }
