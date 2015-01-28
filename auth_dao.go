@@ -143,16 +143,11 @@ func (ad *AuthDAO) AuthenticateUser(UserDetails struct {
 
 		if string(result[i]) == UserDetails.Username {
 
-			fmt.Println("MATCH!!!!!")
-
 			var userData map[string]string
 
 			jsonBytes := []byte(result[i+1])
 
-			fmt.Println(result[i+1])
-
 			if err := json.Unmarshal(jsonBytes, &userData); err != nil {
-				fmt.Println("json unmarshalling problem...")
 				return err
 			}
 

@@ -17,6 +17,7 @@ ngBlogApp.controller('BlogPostsEditorCtrl', function ($scope, $window, $location
                         $scope.postForm = {};
                         markdownEditor.setValue('');
                         $scope.postform.$setPristine();
+                        $location.path('/blog');
                     } else {
                         $location.path('/login');
                     }

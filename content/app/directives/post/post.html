@@ -11,7 +11,7 @@
             </ul>
         </div>
     </div>
-    <aside class="uk-text-muted uk-text-bold">{{postView.Date}}</aside>
+    <aside class="uk-text-muted uk-text-bold">{{ postView.Date.Initial }} <span ng-show="postView.Date.Update">(Updated: {{ postView.Date.Update }})</span></aside>
     <section class="topicbody" ng-bind-html="postView.Body" ng-cloak>
     </section>
 

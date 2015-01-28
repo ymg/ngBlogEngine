@@ -1,24 +1,25 @@
 package main
 
 import (
+	"crypto/md5"
 	"crypto/rand"
+	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"log"
 	"strconv"
-	//"strconv"
 	"strings"
 	"time"
-	//"io/ioutil"
-	//"unicode"
-	//"runtime"
-	//"net/http"
 
+	"bitbucket.org/tebeka/strftime"
+	"code.google.com/p/go-uuid/uuid"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
 	"github.com/howeyc/fsnotify"
 	"github.com/russross/blackfriday"
-	//"github.com/garyburd/redigo/redis"
 )
 
 const oneYear = time.Hour * 24 * 365
@@ -26,7 +27,10 @@ const oneYear = time.Hour * 24 * 365
 var authenticationDAO AuthDAO
 var blogDAO BlogDAO
 var hashUtils Hasher
-var dynamicScriptUrl string
+
+var dynamicScriptUrl, dynamicAppScriptUrl, dynamicCSSUrl string
+var etagLibJS, etagAppJS, etagCSS string
+var appJSBlob, libJSBlob, cssBlob []byte
 
 type TestType struct {
 	name, age string
@@ -52,23 +56,9 @@ func (this *BaseController) SetHeaders() {
 	headers.Add("X-XSS-Protection", "1; mode=block")
 }
 
-func AuthCheck(c *BaseController) {
-
-}
-
 //authentication = [optional]
 func (this *PostController) Get() {
 	this.SetHeaders()
-
-	/*ctxHeader := this.Ctx.ResponseWriter.Header()
-
-	ctxHeader.Add("Content-Type", "application/x-javascript")
-	ctxHeader.Add("Expires", time.Now().Add(oneYear).String())
-
-	this.Ctx.WriteString(`(function x(){
-	return function(){
-	console.log('Hello, Script handler!');
-	}})()();`)*/
 
 	if this.Ctx.Input.Param(":id") != "" {
 
@@ -99,7 +89,6 @@ func (this *PostController) Get() {
 			post, err := blogDAO.GetAll(1)
 
 			if err != nil {
-				fmt.Println(err)
 				this.Ctx.Output.SetStatus(500)
 			}
 
@@ -127,14 +116,12 @@ func (this *PostController) Post() {
 		title, _ := p["title"]
 		md, _ := p["markdown"]
 
-		currentTime := time.Now()
-
 		newP := new(Post)
 
 		newP.Id = strings.Replace(strings.ToLower(title.(string)), " ", "-", -1)
 		newP.Body = string(blackfriday.MarkdownBasic([]byte(md.(string))))
 		newP.Markdown = md.(string)
-		newP.Date = fmt.Sprintf("%v/%v/%v - %v:%v", currentTime.Day(), currentTime.Month(), currentTime.Year(), currentTime.Hour(), currentTime.Minute())
+		newP.Date.Initial, _ = strftime.Format("%B %d, %Y - %H:%M", time.Now())
 		newP.Title = title.(string)
 
 		blogDAO.NewPost(newP)
@@ -166,12 +153,10 @@ func (this *PostController) Put() {
 	md, _ := p["markdown"]
 	id, _ := p["Id"]
 
-	currentTime := time.Now()
-
 	updateP := new(Post)
 
 	updateP.Id = id.(string)
-	updateP.Date = fmt.Sprintf("%v/%v/%v - %v:%v", currentTime.Day(), currentTime.Month(), currentTime.Year(), currentTime.Hour(), currentTime.Minute())
+	updateP.Date.Update, _ = strftime.Format("%B %d, %Y - %H:%M", time.Now())
 	updateP.Body = string(blackfriday.MarkdownBasic([]byte(md.(string))))
 	updateP.Markdown = md.(string)
 	updateP.Title = title.(string)
@@ -204,8 +189,6 @@ func (this *AuthenticationController) Post() {
 
 	if err == nil && usr && pass {
 
-		fmt.Println("Authenticating Now...")
-
 		credentials := struct {
 			Username string
 			Password string
@@ -214,20 +197,14 @@ func (this *AuthenticationController) Post() {
 			usrPass.(string),
 		}
 
-		fmt.Println("Comparing with db data now...")
-
 		if err := authenticationDAO.AuthenticateUser(credentials); err == nil {
 			//adding auth token
 			sessionTypeTest := &TestType{name: "Yasser", age: "28"}
-			fmt.Println("Successfully Authenticated User...")
-
 			this.SetSession("token", sessionTypeTest)
 
-			//fmt.Println("Successfully Authenticated User...")
 			this.Ctx.Output.SetStatus(200)
-
 		} else {
-			this.Ctx.Output.SetStatus(500)
+			this.Ctx.Output.SetStatus(401)
 		}
 
 	} else {
@@ -248,7 +225,6 @@ func (this *AuthenticationController) Put() {
 
 	if token != nil {
 		this.Ctx.Output.SetStatus(200)
-		fmt.Printf("Token details : %v", token.(*TestType).name)
 	} else {
 		/* 403 == lack of sufficient privileges / roles */
 		this.Ctx.Output.SetStatus(401)
@@ -295,8 +271,6 @@ func (this *AdminController) Put() {
 func (this *ConfigurationController) Get() {
 	this.SetHeaders()
 
-	fmt.Printf("\nCSRF token value: %s\n", this.CheckXsrfCookie())
-
 	DefaultConfig := &BlogConfig{}
 	DefaultConfig.Description = "I write about code!"
 	DefaultConfig.Gplus = "#"
@@ -337,6 +311,10 @@ func (this *DbConfigurationController) Put() {
 func (this *MainController) Get() {
 	this.SetHeaders()
 
+	this.Data["css"] = fmt.Sprintf("/api/css/%v", dynamicCSSUrl)
+	this.Data["libjs"] = fmt.Sprintf("/api/scripts/%v", dynamicScriptUrl)
+	this.Data["appjs"] = fmt.Sprintf("/api/appjs/%v", dynamicAppScriptUrl)
+
 	this.TplNames = "index.html"
 }
 
@@ -349,14 +327,58 @@ func main() {
 
 	// Process events
 	go func() {
-		var s int = 0
+
+		dynamicScriptUrl = uuid.New()
+		dynamicCSSUrl = uuid.New()
+		dynamicAppScriptUrl = uuid.New()
+
+		appJSBlob, err = ioutil.ReadFile("minified[js]&[css]/app.js")
+		libJSBlob, err = ioutil.ReadFile("minified[js]&[css]/lib.js")
+		cssBlob, err = ioutil.ReadFile("minified[js]&[css]/app.css")
+
+		hash := md5.New()
+
+		io.WriteString(hash, string(appJSBlob))
+		etagAppJS = hex.EncodeToString(hash.Sum(nil))
+
+		io.WriteString(hash, string(cssBlob))
+		etagCSS = hex.EncodeToString(hash.Sum(nil))
+
+		io.WriteString(hash, string(libJSBlob))
+		etagLibJS = hex.EncodeToString(hash.Sum(nil))
+
+		if err != nil {
+			panic(err)
+		}
+
 		for {
 			select {
 			case ev := <-watcher.Event:
 				log.Println("event:", ev, ev)
-				s = s + 1
-				dynamicScriptUrl = fmt.Sprintf("generating new url, %v", s)
-				log.Println(dynamicScriptUrl)
+
+				dynamicScriptUrl = uuid.New()
+				dynamicCSSUrl = uuid.New()
+				dynamicAppScriptUrl = uuid.New()
+
+				appJSBlob, err = ioutil.ReadFile("minified[js]&[css]/app.js")
+				libJSBlob, err = ioutil.ReadFile("minified[js]&[css]/lib.js")
+				cssBlob, err = ioutil.ReadFile("minified[js]&[css]/app.css")
+
+				hash := md5.New()
+
+				io.WriteString(hash, string(appJSBlob))
+				etagAppJS = hex.EncodeToString(hash.Sum(nil))
+
+				io.WriteString(hash, string(cssBlob))
+				etagCSS = hex.EncodeToString(hash.Sum(nil))
+
+				io.WriteString(hash, string(libJSBlob))
+				etagLibJS = hex.EncodeToString(hash.Sum(nil))
+
+				if err != nil {
+					panic(err)
+				}
+
 			case err := <-watcher.Error:
 				log.Println("error:", err)
 			}
@@ -412,6 +434,82 @@ func main() {
 	beego.Router("/api/logout", &AuthenticationController{})
 	beego.Router("/api/config", &ConfigurationController{})
 	beego.Router("/api/dbconfig", &DbConfigurationController{})
+
+	beego.Get("/api/scripts/:guid?", func(ctx *context.Context) {
+
+		match := ctx.Request.Header.Get("If-None-Match")
+
+		if match == "" || match != etagLibJS {
+			fmt.Printf("Match: %v\n", match)
+			fmt.Printf("Etag: %v\n", etagLibJS)
+
+			blob := string(libJSBlob)
+
+			ctxHeader := ctx.ResponseWriter.Header()
+
+			ctxHeader.Add("Content-Type", "text/javascript")
+			ctxHeader.Add("Expires", time.Now().Add(oneYear).String())
+			ctxHeader.Add("Cache-Control", "public, max-age=30")
+			ctxHeader.Add("ETag", etagLibJS)
+
+			ctx.WriteString(blob)
+
+		} else {
+			ctx.Output.SetStatus(304)
+		}
+
+	})
+
+	beego.Get("/api/css/:guid?", func(ctx *context.Context) {
+
+		match := ctx.Request.Header.Get("If-None-Match")
+
+		if match == "" || match != etagCSS {
+
+			fmt.Printf("Match: %v\n", match)
+			fmt.Printf("Etag: %v\n", etagCSS)
+
+			blob := string(cssBlob)
+
+			ctxHeader := ctx.ResponseWriter.Header()
+
+			ctxHeader.Add("Content-Type", "text/css")
+			ctxHeader.Add("Expires", time.Now().Add(oneYear).String())
+			ctxHeader.Add("Cache-Control", "public, max-age=30")
+			ctxHeader.Add("ETag", etagCSS)
+
+			ctx.WriteString(blob)
+
+		} else {
+			ctx.Output.SetStatus(304)
+		}
+	})
+
+	beego.Get("/api/appjs/:guid?", func(ctx *context.Context) {
+
+		match := ctx.Request.Header.Get("If-None-Match")
+
+		if match == "" || match != etagAppJS {
+
+			fmt.Printf("Match: %v\n", match)
+			fmt.Printf("Etag: %v\n", etagAppJS)
+
+			blob := string(appJSBlob)
+
+			ctxHeader := ctx.ResponseWriter.Header()
+
+			ctxHeader.Add("Content-Type", "text/javascript")
+			ctxHeader.Add("Expires", time.Now().Add(oneYear).String())
+			ctxHeader.Add("Cache-Control", "public, max-age=30")
+			ctxHeader.Add("ETag", etagAppJS)
+
+			ctx.WriteString(blob)
+
+		} else {
+			ctx.Output.SetStatus(304)
+		}
+	})
+
 	beego.Router("/api/*", &MainController{})
 	beego.Router("/", &MainController{})
 	beego.Router("/*", &MainController{})
@@ -424,7 +522,7 @@ func main() {
 	beego.TemplateRight = ">>>"
 	beego.MaxMemory = 5 << 20
 	beego.SessionOn = true
-	beego.SessionName = "ymg.account"
+	beego.SessionName = "yc"
 	//beego.SessionHashKey = rndString(KEYLENGTH)
 	beego.EnableXSRF = true
 	beego.XSRFKEY = rndString(KEYLENGTH)

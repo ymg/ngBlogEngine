@@ -17,7 +17,7 @@
                 </div>
             </div>
             <h1><a style="color: inherit;" href="/blog/{{ post.Id }}">{{ post.Title }}</a></h1>
-            <aside class="uk-text-muted uk-text-bold">{{ post.Date }}</aside>
+            <aside class="uk-text-muted uk-text-bold">{{ post.Date.Initial }} <span ng-show="post.Date.Update">(Updated: {{ post.Date.Update }})</span></aside>
             <section class="topicbody" ng-bind-html="post.Body" ng-cloak>
             </section>
         </div>

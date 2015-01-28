@@ -7,11 +7,17 @@ import (
 	"strings"
 	"time"
 
+	"bitbucket.org/tebeka/strftime"
 	"github.com/garyburd/redigo/redis"
 )
 
 type Post struct {
-	Id, Title, Body, Date, Markdown string
+	Id, Title, Body, Markdown string
+	Date                      PostDate
+}
+type PostDate struct {
+	Update  string
+	Initial string
 }
 type BlogDAO struct{}
 
@@ -126,21 +132,23 @@ func (bd *BlogDAO) UpdatePost(post *Post) error {
 
 	p, _ := bd.Get(post)
 
+	updatedOnDate, _ := strftime.Format("%B %d, %Y - %H:%M", time.Now())
+
 	p.Body = post.Body
-	p.Id = strings.Replace(strings.ToLower(post.Title), " ", "-", -1)
 	p.Markdown = p.Markdown
 	p.Title = post.Title
+	p.Date.Update = updatedOnDate
 
 	conn := blogConn.Get()
 	defer conn.Close()
 
-	JsonPost, err := json.Marshal(post)
+	JsonPost, err := json.Marshal(p)
 
 	if err != nil {
 		return err
 	}
 
-	if _, err := conn.Do("HMSET", "posts", post.Id, JsonPost); err != nil {
+	if _, err := conn.Do("HMSET", "posts", p.Id, JsonPost); err != nil {
 		return err
 	}
 

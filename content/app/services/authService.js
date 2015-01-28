@@ -3,7 +3,7 @@
 
 ngBlogApp.service('authService', function ($rootScope, $log, $http, $q) {
 
-    var userIsAuthenticated = false;
+    var userIsAuthenticated;
 
     this.auth = function (up, cb) {
         $http({method: 'POST', url: '/api/login', data: up}).
